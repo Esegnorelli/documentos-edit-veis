@@ -1,0 +1,5 @@
+{
+  "name": "Hora do Pastel Manager",
+  "description": "A digital management system for Hora do Pastel to generate, fill, and print operational control forms for oil, waste, and inventory.",
+  "requestFramePermissions": []
+}
