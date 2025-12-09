@@ -4,10 +4,10 @@ import { Logo } from './Logo';
 type StockItem = string | { name: string; unit: string };
 
 export const DailyStock: React.FC = () => {
-  // Increased row height to h-[22px] and font to text-[10px] for better legibility on landscape
+  // Reduced row height to h-[18px] and font to text-[9px] to fix pagination overflow
   const renderSimpleTable = (title: string, items: StockItem[], rows = items.length, defaultUnit = "un") => (
-    <div className="mb-2 print:break-inside-avoid">
-      <table className="w-full border-collapse border border-gray-600 text-[10px] leading-tight">
+    <div className="mb-1 print:break-inside-avoid">
+      <table className="w-full border-collapse border border-gray-600 text-[9px] leading-tight">
         <thead>
           <tr className="bg-gray-100">
             <th className="border border-gray-600 px-1 text-left w-1/2 py-0.5">{title}</th>
@@ -20,7 +20,7 @@ export const DailyStock: React.FC = () => {
             const itemUnit = typeof item === 'string' ? defaultUnit : item.unit;
             
             return (
-              <tr key={i} className="h-[22px]">
+              <tr key={i} className="h-[18px]">
                 <td className="border border-gray-600 px-1">
                    <input 
                     type="text" 
@@ -31,19 +31,19 @@ export const DailyStock: React.FC = () => {
                 <td className="border border-gray-600 px-1 bg-white">
                     <div className="flex justify-between items-center h-full">
                        <input type="text" className="w-full h-full bg-transparent outline-none text-right" />
-                       <span className="text-[9px] text-gray-500 ml-1 uppercase">{itemUnit}</span>
+                       <span className="text-[8px] text-gray-500 ml-1 uppercase">{itemUnit}</span>
                     </div>
                 </td>
               </tr>
             );
           })}
           {items.length < rows && Array.from({length: rows - items.length}).map((_, i) => (
-             <tr key={`empty-${i}`} className="h-[22px]">
+             <tr key={`empty-${i}`} className="h-[18px]">
                 <td className="border border-gray-600 px-1 bg-white"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
                 <td className="border border-gray-600 px-1 bg-white">
                   <div className="flex justify-between items-center h-full">
                      <input type="text" className="w-full h-full bg-transparent outline-none text-right" />
-                     <span className="text-[9px] text-gray-500 ml-1 uppercase">{defaultUnit}</span>
+                     <span className="text-[8px] text-gray-500 ml-1 uppercase">{defaultUnit}</span>
                   </div>
                 </td>
              </tr>
@@ -54,8 +54,8 @@ export const DailyStock: React.FC = () => {
   );
 
   const renderMassasTable = () => (
-    <div className="mb-2 print:break-inside-avoid">
-      <table className="w-full border-collapse border border-gray-600 text-[10px] leading-tight">
+    <div className="mb-1 print:break-inside-avoid">
+      <table className="w-full border-collapse border border-gray-600 text-[9px] leading-tight">
         <thead>
           <tr className="bg-gray-100">
             <th className="border border-gray-600 px-1 text-left w-1/2 py-0.5">Massas</th>
@@ -64,7 +64,7 @@ export const DailyStock: React.FC = () => {
         </thead>
         <tbody>
           {["Massa Grande", "Massa Média"].map((item, i) => (
-            <tr key={i} className="h-[22px]">
+            <tr key={i} className="h-[18px]">
               <td className="border border-gray-600 px-1 font-medium text-gray-900 align-middle">
                 {item}
               </td>
@@ -72,12 +72,12 @@ export const DailyStock: React.FC = () => {
                 <div className="flex justify-between items-center h-full gap-1">
                   <div className="flex items-center flex-1 min-w-0">
                     <input type="text" className="w-full bg-transparent outline-none text-right min-w-0" />
-                    <span className="text-[9px] text-gray-500 ml-0.5 uppercase">PCT</span>
+                    <span className="text-[8px] text-gray-500 ml-0.5 uppercase">PCT</span>
                   </div>
-                  <div className="w-px h-4 bg-gray-300 mx-0.5"></div>
+                  <div className="w-px h-3 bg-gray-300 mx-0.5"></div>
                   <div className="flex items-center flex-1 min-w-0">
                     <input type="text" className="w-full bg-transparent outline-none text-right min-w-0" />
-                    <span className="text-[9px] text-gray-500 ml-0.5 uppercase">UN</span>
+                    <span className="text-[8px] text-gray-500 ml-0.5 uppercase">UN</span>
                   </div>
                 </div>
               </td>
@@ -97,7 +97,7 @@ export const DailyStock: React.FC = () => {
       `}</style>
       
       <div className="flex justify-center items-center mb-1 border-b-2 border-red-600 pb-1 flex-shrink-0">
-         <h1 className="text-2xl font-bold text-gray-900 uppercase tracking-wide text-center mr-4">
+         <h1 className="text-xl font-bold text-gray-900 uppercase tracking-wide text-center mr-4">
           Controle do Estoque Diário
         </h1>
         <div className="transform scale-60">
@@ -105,11 +105,11 @@ export const DailyStock: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex-grow flex flex-col gap-2">
+      <div className="flex-grow flex flex-col gap-1">
           {/* Complex Meat Table - Cozidos */}
           <div className="flex-shrink-0">
-            <div className="text-[11px] font-bold mb-0.5 italic">Cozidos</div>
-            <table className="w-full border-collapse border border-gray-600 text-[10px]">
+            <div className="text-[10px] font-bold mb-0.5 italic">Cozidos</div>
+            <table className="w-full border-collapse border border-gray-600 text-[9px]">
               <thead>
                 <tr className="bg-gray-100">
                   <th className="border border-gray-600 p-0.5 w-32 text-left">Descrição</th>
@@ -127,7 +127,7 @@ export const DailyStock: React.FC = () => {
                   "Bacon", "Carne de Panela", "Carne Moída", "Filé", 
                   "Frango Desfiado", "Strogonoff de Carne", "Strogonoff de Frango"
                 ].map((item, i) => (
-                  <tr key={i} className="h-[22px]">
+                  <tr key={i} className="h-[18px]">
                     <td className="border border-gray-600 px-1 font-medium">
                       <input type="text" defaultValue={item} className="w-full h-full bg-transparent outline-none text-gray-900" />
                     </td>
@@ -155,7 +155,7 @@ export const DailyStock: React.FC = () => {
           </div>
 
           {/* Columns for lists */}
-          <div className="flex gap-3 items-start flex-grow">
+          <div className="flex gap-2 items-start flex-grow">
             
             {/* Col 1 */}
             <div className="flex-1">
@@ -219,19 +219,19 @@ export const DailyStock: React.FC = () => {
                ], 7, "kg")}
                
                <div className="mt-auto">
-                 <div className="border border-gray-600 p-1.5 text-[9px] h-12 bg-white mb-2">
+                 <div className="border border-gray-600 p-1 text-[8px] h-10 bg-white mb-1">
                    <strong className="block mb-0.5">Observações:</strong>
-                   <textarea className="w-full h-5 resize-none bg-transparent outline-none" placeholder="..."></textarea>
+                   <textarea className="w-full h-4 resize-none bg-transparent outline-none" placeholder="..."></textarea>
                  </div>
                  
-                 <div className="border border-gray-600 p-1.5 bg-gray-50">
+                 <div className="border border-gray-600 p-1 bg-gray-50">
                     <div className="flex flex-col gap-1">
                        <div>
-                         <label className="text-[9px] font-bold mr-2">Nome:</label>
+                         <label className="text-[8px] font-bold mr-2">Nome:</label>
                          <input type="text" className="border-b border-gray-600 flex-grow w-full bg-transparent outline-none text-xs" />
                        </div>
                        <div>
-                         <label className="text-[9px] font-bold mr-2">Data:</label>
+                         <label className="text-[8px] font-bold mr-2">Data:</label>
                          <input type="text" className="border-b border-gray-600 w-32 bg-transparent outline-none text-xs" placeholder="__/__/____" />
                        </div>
                     </div>
