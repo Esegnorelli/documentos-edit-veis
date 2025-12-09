@@ -46,7 +46,7 @@ export const DailyStock: React.FC = () => {
   );
 
   return (
-    <div className="bg-white p-4 max-w-[297mm] mx-auto min-h-[210mm] shadow-lg print:shadow-none print:p-0 landscape:w-full print:w-full print:max-w-none">
+    <div className="bg-white p-4 max-w-[297mm] mx-auto min-h-[210mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 landscape:w-full print:w-full print:max-w-none">
       <style>{`
         @media print {
            @page { size: A4 landscape; margin: 5mm; }
