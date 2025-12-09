@@ -1,8 +1,10 @@
 import React from 'react';
 import { Logo } from './Logo';
 
+type StockItem = string | { name: string; unit: string };
+
 export const DailyStock: React.FC = () => {
-  const renderSimpleTable = (title: string, items: string[], rows = items.length, unit = "un") => (
+  const renderSimpleTable = (title: string, items: StockItem[], rows = items.length, defaultUnit = "un") => (
     <div className="mb-2 print:break-inside-avoid">
       <table className="w-full border-collapse border border-gray-600 text-[9px] leading-tight">
         <thead>
@@ -12,33 +14,73 @@ export const DailyStock: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {items.map((item, i) => (
-            <tr key={i} className="h-[18px]">
-              <td className="border border-gray-600 px-1">
-                 <input 
-                  type="text" 
-                  defaultValue={item} 
-                  className="w-full h-full bg-transparent outline-none font-medium text-gray-900 placeholder-gray-400" 
-                />
-              </td>
-              <td className="border border-gray-600 px-1 bg-white">
-                  <div className="flex justify-between items-center h-full">
-                     <input type="text" className="w-full h-full bg-transparent outline-none text-right" />
-                     <span className="text-[8px] text-gray-500 ml-1">{unit}</span>
-                  </div>
-              </td>
-            </tr>
-          ))}
+          {items.map((item, i) => {
+            const itemName = typeof item === 'string' ? item : item.name;
+            const itemUnit = typeof item === 'string' ? defaultUnit : item.unit;
+            
+            return (
+              <tr key={i} className="h-[18px]">
+                <td className="border border-gray-600 px-1">
+                   <input 
+                    type="text" 
+                    defaultValue={itemName} 
+                    className="w-full h-full bg-transparent outline-none font-medium text-gray-900 placeholder-gray-400" 
+                  />
+                </td>
+                <td className="border border-gray-600 px-1 bg-white">
+                    <div className="flex justify-between items-center h-full">
+                       <input type="text" className="w-full h-full bg-transparent outline-none text-right" />
+                       <span className="text-[8px] text-gray-500 ml-1 uppercase">{itemUnit}</span>
+                    </div>
+                </td>
+              </tr>
+            );
+          })}
           {items.length < rows && Array.from({length: rows - items.length}).map((_, i) => (
              <tr key={`empty-${i}`} className="h-[18px]">
                 <td className="border border-gray-600 px-1 bg-white"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
                 <td className="border border-gray-600 px-1 bg-white">
                   <div className="flex justify-between items-center h-full">
                      <input type="text" className="w-full h-full bg-transparent outline-none text-right" />
-                     <span className="text-[8px] text-gray-500 ml-1">{unit}</span>
+                     <span className="text-[8px] text-gray-500 ml-1 uppercase">{defaultUnit}</span>
                   </div>
                 </td>
              </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+
+  const renderMassasTable = () => (
+    <div className="mb-2 print:break-inside-avoid">
+      <table className="w-full border-collapse border border-gray-600 text-[9px] leading-tight">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="border border-gray-600 px-1 text-left w-1/2 py-0.5">Massas</th>
+            <th className="border border-gray-600 px-1 text-center w-1/2 py-0.5">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {["Massa Grande", "Massa Média"].map((item, i) => (
+            <tr key={i} className="h-[18px]">
+              <td className="border border-gray-600 px-1 font-medium text-gray-900 align-middle">
+                {item}
+              </td>
+              <td className="border border-gray-600 px-1 bg-white">
+                <div className="flex justify-between items-center h-full gap-1">
+                  <div className="flex items-center flex-1 min-w-0">
+                    <input type="text" className="w-full bg-transparent outline-none text-right min-w-0" />
+                    <span className="text-[8px] text-gray-500 ml-0.5 uppercase">PCT</span>
+                  </div>
+                  <div className="w-px h-3 bg-gray-300 mx-0.5"></div>
+                  <div className="flex items-center flex-1 min-w-0">
+                    <input type="text" className="w-full bg-transparent outline-none text-right min-w-0" />
+                    <span className="text-[8px] text-gray-500 ml-0.5 uppercase">UN</span>
+                  </div>
+                </div>
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>
@@ -71,11 +113,11 @@ export const DailyStock: React.FC = () => {
               <th className="border border-gray-600 p-0.5 w-32 text-left">Descrição</th>
               {Array.from({length: 4}).map((_, i) => (
                 <React.Fragment key={i}>
-                  <th className="border border-gray-600 p-0.5 w-12">QTD.</th>
+                  <th className="border border-gray-600 p-0.5 w-12">QTD. (KG)</th>
                   <th className="border border-gray-600 p-0.5 w-14">VAL.</th>
                 </React.Fragment>
               ))}
-              <th className="border border-gray-600 p-0.5 w-16">Total</th>
+              <th className="border border-gray-600 p-0.5 w-16">Total (KG)</th>
             </tr>
           </thead>
           <tbody>
@@ -92,7 +134,6 @@ export const DailyStock: React.FC = () => {
                       <td className="border border-gray-600 px-1 bg-white">
                         <div className="flex justify-between items-center h-full">
                            <input type="text" className="w-full bg-transparent outline-none text-right" />
-                           <span className="text-[8px] text-gray-500 ml-0.5 font-medium">KG</span>
                         </div>
                       </td>
                       <td className="border border-gray-600 px-0.5 bg-white text-center">
@@ -103,7 +144,6 @@ export const DailyStock: React.FC = () => {
                 <td className="border border-gray-600 px-1 text-center font-bold bg-white">
                     <div className="flex justify-between items-center h-full">
                         <input type="text" className="w-full bg-transparent outline-none text-right" />
-                        <span className="text-[8px] text-gray-500 ml-0.5 font-medium">KG</span>
                     </div>
                 </td>
               </tr>
@@ -121,7 +161,7 @@ export const DailyStock: React.FC = () => {
             "Bis", 
             "BomBom", 
             "Kit Kat", 
-            "M&Ms", 
+            { name: "M&Ms", unit: "kg" },
             "Oreo", 
             "Stikadinho"
           ])}
@@ -131,9 +171,9 @@ export const DailyStock: React.FC = () => {
              "Brócolis", 
              "Cenoura", 
              "Tempero Verde"
-           ])}
+           ], 4, "kg")}
 
-           {renderSimpleTable("Massas", ["Massa Grande", "Massa Pequena"])}
+           {renderMassasTable()}
         </div>
 
         {/* Col 2: Secos (Pantry/Dry Goods) */}
@@ -157,18 +197,18 @@ export const DailyStock: React.FC = () => {
              "Orégano", 
              "Palmito", 
              "Tomate Seco"
-           ])}
+           ], 18, "kg")}
         </div>
 
         {/* Col 3: Laticínios/Ovos & Crús & Footer */}
         <div className="flex-1">
            {renderSimpleTable("Laticínios e Ovos (Refrigerados)", [
-             "Bisnaga Cheddar", 
-             "Bisnaga Requeijão", 
-             "Muçarela", 
-             "Ovo", 
-             "Parmesão", 
-             "Provolone"
+             { name: "Bisnaga Cheddar", unit: "kg" },
+             { name: "Bisnaga Requeijão", unit: "kg" },
+             { name: "Muçarela", unit: "kg" },
+             { name: "Ovo", unit: "un" },
+             { name: "Parmesão", unit: "kg" },
+             { name: "Provolone", unit: "kg" }
            ])}
 
            {renderSimpleTable("Ingredientes (Crús)", [
