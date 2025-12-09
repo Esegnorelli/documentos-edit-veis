@@ -104,36 +104,36 @@ const categories: InventoryCategory[] = [
     ]
   },
   {
-    title: "Ingredientes",
-    items: [
-      { name: "Amido De Milho", unit: "KG" },
-      { name: "Bacon", unit: "KG" },
-      { name: "Carne Moída", unit: "KG" },
-      { name: "Creme Culinário", unit: "KG" },
-      { name: "Gado Cubos", unit: "KG" },
-      { name: "Gado Picado", unit: "KG" },
-      { name: "Mix Frango", unit: "KG" },
-      { name: "Mix Moída", unit: "KG" },
-      { name: "Mix Picado", unit: "KG" },
-      { name: "Molho De Ketchup", unit: "KG" },
-      { name: "Molho De Tomate", unit: "KG" },
-      { name: "Molho Inglês", unit: "KG" },
-      { name: "Peito De Frango", unit: "KG" },
-      { name: "Sassami", unit: "KG" },
-    ]
+      title: "Ingredientes",
+      items: [
+          { name: "Amido De Milho", unit: "KG" },
+          { name: "Bacon", unit: "KG" },
+          { name: "Carne Moída", unit: "KG" },
+          { name: "Creme Culinário", unit: "KG" },
+          { name: "Gado Cubos", unit: "KG" },
+          { name: "Gado Picado", unit: "KG" },
+          { name: "Mix Frango", unit: "KG" },
+          { name: "Mix Moída", unit: "KG" },
+          { name: "Mix Picado", unit: "KG" },
+          { name: "Molho De Ketchup", unit: "KG" },
+          { name: "Molho De Tomate", unit: "KG" },
+          { name: "Molho Inglês", unit: "KG" },
+          { name: "Peito De Frango", unit: "KG" },
+          { name: "Sassami", unit: "KG" },
+      ]
   },
   {
-    title: "Massas",
-    items: [
-      { name: "Grande", unit: "UN" },
-      { name: "Média", unit: "UN" },
-    ]
+      title: "Massas",
+      items: [
+          { name: "Grande", unit: "UN" },
+          { name: "Média", unit: "UN" },
+      ]
   },
   {
-    title: "Óleos",
-    items: [
-      { name: "Óleo de Algodão", unit: "KG" },
-    ]
+      title: "Óleos",
+      items: [
+          { name: "Óleo de Algodão", unit: "KG" },
+      ]
   }
 ];
 
@@ -154,10 +154,10 @@ export const GeneralInventory: React.FC = () => {
           {category.items.map((item, i) => (
             <tr key={i} className="border-b border-black h-5">
               <td className="border-r border-black px-1 font-medium">
-                <input
-                  type="text"
-                  defaultValue={item.name}
-                  className="w-full h-full bg-transparent outline-none truncate text-gray-900"
+                <input 
+                  type="text" 
+                  defaultValue={item.name} 
+                  className="w-full h-full bg-transparent outline-none truncate text-gray-900" 
                 />
               </td>
               <td className="border-r border-black px-1 text-center bg-gray-50">{item.unit}</td>
@@ -172,47 +172,42 @@ export const GeneralInventory: React.FC = () => {
   );
 
   return (
-    <div className="bg-white p-4 max-w-[210mm] mx-auto min-h-[297mm] shadow-lg print:shadow-none print:p-0 text-xs">
-      <style>{`
-        @media print {
-          @page { size: A4 portrait; }
-        }
-      `}</style>
+    <div className="bg-white p-4 max-w-[210mm] mx-auto min-h-[297mm] shadow-lg print:shadow-none print:p-0 text-xs print:w-full print:max-w-none">
       <div className="flex justify-center mb-4">
         <Logo className="scale-75" />
       </div>
-
+      
       <div className="flex flex-wrap -mx-2">
         {/* Column 1 */}
         <div className="w-1/2 px-2">
-          {renderTable(categories[0])} {/* Insumos */}
-          {renderTable(categories[1])} {/* Embalagens */}
+           {renderTable(categories[0])} {/* Insumos */}
+           {renderTable(categories[1])} {/* Embalagens */}
         </div>
         {/* Column 2 */}
         <div className="w-1/2 px-2">
-          {renderTable(categories[2])} {/* Bebidas */}
-          {renderTable(categories[3])} {/* Ingredientes */}
-          {renderTable(categories[4])} {/* Massas */}
-          {renderTable(categories[5])} {/* Óleos */}
-
-          <div className="mt-8 border border-black p-2 bg-gray-50 break-inside-avoid">
-            <div className="grid grid-cols-1 gap-4">
-              <div>
-                <label className="block font-bold mb-1">Responsável pelo inventário:</label>
-                <input type="text" className="w-full border-b border-black bg-transparent outline-none" />
-              </div>
-              <div className="flex gap-2">
-                <div className="flex-1">
-                  <label className="block font-bold mb-1">Data atual:</label>
-                  <input type="text" className="w-full border-b border-black bg-transparent outline-none" placeholder="__/__/__" />
-                </div>
-                <div className="flex-1">
-                  <label className="block font-bold mb-1">Data anterior:</label>
-                  <input type="text" className="w-full border-b border-black bg-transparent outline-none" placeholder="__/__/__" />
-                </div>
-              </div>
-            </div>
-          </div>
+           {renderTable(categories[2])} {/* Bebidas */}
+           {renderTable(categories[3])} {/* Ingredientes */}
+           {renderTable(categories[4])} {/* Massas */}
+           {renderTable(categories[5])} {/* Óleos */}
+           
+           <div className="mt-8 border border-black p-2 bg-gray-50 break-inside-avoid">
+             <div className="grid grid-cols-1 gap-4">
+               <div>
+                 <label className="block font-bold mb-1">Responsável pelo inventário:</label>
+                 <input type="text" className="w-full border-b border-black bg-transparent outline-none" />
+               </div>
+               <div className="flex gap-2">
+                  <div className="flex-1">
+                    <label className="block font-bold mb-1">Data atual:</label>
+                    <input type="text" className="w-full border-b border-black bg-transparent outline-none" placeholder="__/__/__" />
+                  </div>
+                  <div className="flex-1">
+                    <label className="block font-bold mb-1">Data anterior:</label>
+                    <input type="text" className="w-full border-b border-black bg-transparent outline-none" placeholder="__/__/__" />
+                  </div>
+               </div>
+             </div>
+           </div>
         </div>
       </div>
     </div>

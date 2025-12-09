@@ -13,16 +13,30 @@
           margin: 0.5cm;
           size: A4;
         }
+        
+        /* CRITICAL: Reset page structure for print to prevent cutting off content */
+        html, body, #root, main {
+          height: auto !important;
+          min-height: 0 !important;
+          overflow: visible !important;
+          display: block !important;
+          position: relative !important;
+        }
+
         body {
           print-color-adjust: exact;
           -webkit-print-color-adjust: exact;
+          background: white;
         }
+
         .no-print {
           display: none !important;
         }
+
         .print-break-inside-avoid {
           break-inside: avoid;
         }
+        
         /* Ensure inputs print their values */
         input[type="text"], input[type="number"], textarea {
           border: none;
@@ -30,12 +44,19 @@
           padding: 0;
           margin: 0;
           width: 100%;
+          resize: none;
         }
         /* Hide placeholders on print */
         input::placeholder {
           color: transparent;
         }
+        
+        /* Ensure shadows dont ruin print */
+        * {
+          box-shadow: none !important;
+        }
       }
+      
       /* Custom scrollbar for web view */
       ::-webkit-scrollbar {
         width: 8px;
@@ -52,7 +73,7 @@
         background: #b91c1c; 
       }
     </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.0",

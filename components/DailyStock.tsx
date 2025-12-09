@@ -46,7 +46,7 @@ export const DailyStock: React.FC = () => {
   );
 
   return (
-    <div className="bg-white p-4 max-w-[297mm] mx-auto min-h-[210mm] shadow-lg print:shadow-none print:p-0 landscape:w-full">
+    <div className="bg-white p-4 max-w-[297mm] mx-auto min-h-[210mm] shadow-lg print:shadow-none print:p-0 landscape:w-full print:w-full print:max-w-none">
       <style>{`
         @media print {
            @page { size: A4 landscape; margin: 5mm; }
@@ -151,7 +151,7 @@ export const DailyStock: React.FC = () => {
       
       {/* Instructions footer - shortened version */}
       <div className="mt-4 border-t border-gray-400 pt-2 text-[9px] text-gray-600">
-        <p><strong>Atenção:</strong> Tomate seco/Azeitonas (contar &gt;50%). Calabresa/Muçarela (fracionar por unidade). Provolone (metade = 1 un).</p>
+        <p><strong>Atenção:</strong> Tomate seco/Azeitonas (contar &gt; 50%). Calabresa/Muçarela (fracionar por unidade). Provolone (metade = 1 un).</p>
       </div>
 
     </div>

@@ -5,7 +5,7 @@ export const WasteControl: React.FC = () => {
   const rows = 20;
 
   return (
-    <div className="bg-white p-8 max-w-[297mm] mx-auto min-h-[210mm] shadow-lg print:shadow-none print:p-0 landscape:w-full">
+    <div className="bg-white p-8 max-w-[297mm] mx-auto min-h-[210mm] shadow-lg print:shadow-none print:p-0 landscape:w-full print:w-full print:max-w-none">
        {/* Landscape mode recommended for printing this one */}
        <style>{`
         @media print {
@@ -22,30 +22,30 @@ export const WasteControl: React.FC = () => {
         </div>
       </div>
 
-      <table className="w-full border-collapse border border-gray-900 text-sm">
+      <table className="w-full border-collapse border border-black text-sm">
         <thead>
           <tr className="bg-gray-100">
-            <th className="border border-gray-900 p-2 w-24">DATA</th>
-            <th className="border border-gray-900 p-2 w-48">ITEM</th>
-            <th className="border border-gray-900 p-2 w-16">QTD</th>
-            <th className="border border-gray-900 p-2 w-16">KG/UN</th>
-            <th className="border border-gray-900 p-2 w-48">MOTIVO</th>
-            <th className="border border-gray-900 p-2">DESCREVER O QUE HOUVE</th>
-            <th className="border border-gray-900 p-2 w-32">NOME</th>
-            <th className="border border-gray-900 p-2 w-24">TURNO</th>
+            <th className="border border-black p-2 w-24">DATA</th>
+            <th className="border border-black p-2 w-48">ITEM</th>
+            <th className="border border-black p-2 w-16">QTD</th>
+            <th className="border border-black p-2 w-16">KG/UN</th>
+            <th className="border border-black p-2 w-48">MOTIVO</th>
+            <th className="border border-black p-2">DESCREVER O QUE HOUVE</th>
+            <th className="border border-black p-2 w-32">NOME</th>
+            <th className="border border-black p-2 w-24">TURNO</th>
           </tr>
         </thead>
         <tbody>
           {Array.from({ length: rows }).map((_, i) => (
             <tr key={i} className="h-8">
-              <td className="border border-gray-900 p-1"><input type="text" className="w-full h-full bg-transparent outline-none text-center" placeholder="__/__/__" /></td>
-              <td className="border border-gray-900 p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
-              <td className="border border-gray-900 p-1"><input type="number" className="w-full h-full bg-transparent outline-none text-center" /></td>
-              <td className="border border-gray-900 p-1"><input type="text" className="w-full h-full bg-transparent outline-none text-center" /></td>
-              <td className="border border-gray-900 p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
-              <td className="border border-gray-900 p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
-              <td className="border border-gray-900 p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
-              <td className="border border-gray-900 p-1 text-center font-mono text-xs align-middle">
+              <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none text-center" placeholder="__/__/__" /></td>
+              <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
+              <td className="border border-black p-1"><input type="number" className="w-full h-full bg-transparent outline-none text-center" /></td>
+              <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none text-center" /></td>
+              <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
+              <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
+              <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
+              <td className="border border-black p-1 text-center font-mono text-xs align-middle">
                  <label className="mr-1 cursor-pointer"><input type="checkbox" /> D</label>
                  <label className="cursor-pointer"><input type="checkbox" /> N</label>
               </td>
