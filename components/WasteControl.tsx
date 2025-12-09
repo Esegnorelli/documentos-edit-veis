@@ -5,11 +5,11 @@ export const WasteControl: React.FC = () => {
   const rows = 20;
 
   return (
-    <div className="bg-white p-8 max-w-[297mm] mx-auto min-h-[210mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 landscape:w-full print:w-full print:max-w-none">
-       {/* Landscape mode recommended for printing this one */}
+    <div className="bg-white p-8 w-[297mm] mx-auto min-h-[210mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 print:w-full">
+       {/* Landscape mode forced for printing */}
        <style>{`
         @media print {
-           @page { size: A4 landscape; margin: 5mm; }
+           @page { size: landscape; margin: 5mm; }
         }
       `}</style>
       
@@ -46,8 +46,10 @@ export const WasteControl: React.FC = () => {
               <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
               <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
               <td className="border border-black p-1 text-center font-mono text-xs align-middle">
-                 <label className="mr-1 cursor-pointer"><input type="checkbox" /> D</label>
-                 <label className="cursor-pointer"><input type="checkbox" /> N</label>
+                 <div className="flex justify-center items-center gap-2">
+                   <label className="cursor-pointer flex items-center"><input type="checkbox" className="mr-0.5" /> D</label>
+                   <label className="cursor-pointer flex items-center"><input type="checkbox" className="mr-0.5" /> N</label>
+                 </div>
               </td>
             </tr>
           ))}

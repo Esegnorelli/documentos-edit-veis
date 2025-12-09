@@ -173,6 +173,12 @@ export const GeneralInventory: React.FC = () => {
 
   return (
     <div className="bg-white p-4 max-w-[210mm] mx-auto min-h-[297mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 text-xs print:w-full print:max-w-none">
+      <style>{`
+        @media print {
+           @page { size: portrait; margin: 5mm; }
+        }
+      `}</style>
+
       <div className="flex justify-between items-center mb-4 border-b-2 border-red-600 pb-1">
          <h1 className="text-3xl font-bold text-gray-900 uppercase tracking-wide text-center flex-grow pl-10">
           INVENTÁRIO
