@@ -25,12 +25,10 @@ export const WasteControl: React.FC = () => {
         <thead>
           <tr className="bg-gray-100">
             <th className="border border-black p-1.5 w-24">DATA</th>
-            <th className="border border-black p-1.5 w-48">ITEM</th>
-            <th className="border border-black p-1.5 w-16">QTD</th>
-            <th className="border border-black p-1.5 w-16">KG/UN</th>
-            <th className="border border-black p-1.5 w-48">MOTIVO</th>
-            <th className="border border-black p-1.5">DESCREVER O QUE HOUVE</th>
-            <th className="border border-black p-1.5 w-32">NOME</th>
+            <th className="border border-black p-1.5 w-64">ITEM</th>
+            <th className="border border-black p-1.5 w-24">KG/UN</th>
+            <th className="border border-black p-1.5">DESCREVA O QUE ACONTECEU</th>
+            <th className="border border-black p-1.5 w-40">NOME</th>
             <th className="border border-black p-1.5 w-24">TURNO</th>
           </tr>
         </thead>
@@ -39,9 +37,7 @@ export const WasteControl: React.FC = () => {
             <tr key={i} className="h-7">
               <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none text-center" placeholder="__/__/__" /></td>
               <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
-              <td className="border border-black p-1"><input type="number" className="w-full h-full bg-transparent outline-none text-center" /></td>
               <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none text-center" /></td>
-              <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
               <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
               <td className="border border-black p-1"><input type="text" className="w-full h-full bg-transparent outline-none" /></td>
               <td className="border border-black p-1 text-center font-mono text-xs align-middle">
