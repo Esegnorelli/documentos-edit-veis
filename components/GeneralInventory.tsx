@@ -139,31 +139,27 @@ const categories: InventoryCategory[] = [
 
 export const GeneralInventory: React.FC = () => {
   const renderTable = (category: InventoryCategory) => (
-    <div className="mb-4 break-inside-avoid print:break-inside-avoid" key={category.title}>
-      <table className="w-full border-collapse border border-black text-xs">
+    <div className="mb-2" key={category.title}>
+      <table className="w-full border-collapse border border-black text-[9px] leading-tight">
         <thead>
           <tr className="bg-gray-200">
-            <th className="border border-black px-2 py-1 text-left w-1/2">{category.title}</th>
-            <th className="border border-black px-1 py-1 w-8 text-center">UP</th>
-            <th className="border border-black px-1 py-1 w-12 text-center">Fec</th>
-            <th className="border border-black px-1 py-1 w-12 text-center">Abe</th>
-            <th className="border border-black px-1 py-1 w-12 text-center">Tot</th>
+            <th className="border border-black px-1 py-0.5 text-left w-[45%] uppercase">{category.title}</th>
+            <th className="border border-black px-0.5 py-0.5 w-6 text-center">UN</th>
+            <th className="border border-black px-0.5 py-0.5 w-10 text-center">Fec</th>
+            <th className="border border-black px-0.5 py-0.5 w-10 text-center">Abe</th>
+            <th className="border border-black px-0.5 py-0.5 w-10 text-center">Tot</th>
           </tr>
         </thead>
         <tbody>
           {category.items.map((item, i) => (
-            <tr key={i} className="border-b border-black h-5">
-              <td className="border-r border-black px-1 font-medium">
-                <input 
-                  type="text" 
-                  defaultValue={item.name} 
-                  className="w-full h-full bg-transparent outline-none truncate text-gray-900" 
-                />
+            <tr key={i} className="border-b border-black h-3.5">
+              <td className="border-r border-black px-1 font-medium whitespace-nowrap overflow-hidden">
+                <span className="block truncate -mt-[1px]">{item.name}</span>
               </td>
-              <td className="border-r border-black px-1 text-center bg-gray-50">{item.unit}</td>
-              <td className="border-r border-black px-1"><input type="text" className="w-full h-full bg-transparent outline-none text-center" /></td>
-              <td className="border-r border-black px-1"><input type="text" className="w-full h-full bg-transparent outline-none text-center" /></td>
-              <td className="px-1"><input type="text" className="w-full h-full bg-transparent outline-none text-center font-bold" /></td>
+              <td className="border-r border-black px-0.5 text-center bg-gray-50 text-[8px]">{item.unit}</td>
+              <td className="border-r border-black px-0.5"><input type="text" className="w-full h-full bg-transparent outline-none text-center" /></td>
+              <td className="border-r border-black px-0.5"><input type="text" className="w-full h-full bg-transparent outline-none text-center" /></td>
+              <td className="px-0.5"><input type="text" className="w-full h-full bg-transparent outline-none text-center font-bold" /></td>
             </tr>
           ))}
         </tbody>
@@ -172,49 +168,53 @@ export const GeneralInventory: React.FC = () => {
   );
 
   return (
-    <div className="bg-white p-4 max-w-[210mm] mx-auto min-h-[297mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 text-xs print:w-full print:max-w-none">
+    <div className="bg-white p-4 max-w-[210mm] mx-auto min-h-[297mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 text-[10px] print:w-full print:max-w-none overflow-hidden">
       <style>{`
         @media print {
-           @page { size: portrait; margin: 5mm; }
+           @page { size: A4 portrait; margin: 4mm; }
+           body { -webkit-print-color-adjust: exact; }
         }
       `}</style>
 
-      <div className="flex justify-between items-center mb-4 border-b-2 border-red-600 pb-1">
-         <h1 className="text-3xl font-bold text-gray-900 uppercase tracking-wide text-center flex-grow pl-10">
-          INVENTÁRIO
+      <div className="flex justify-between items-center mb-2 border-b-2 border-red-600 pb-1">
+         <h1 className="text-xl font-bold text-gray-900 uppercase tracking-wide text-center flex-grow pl-10">
+          INVENTÁRIO GERAL
         </h1>
         <div className="transform scale-75 origin-right">
            <Logo />
         </div>
       </div>
       
-      <div className="flex flex-wrap -mx-2">
+      <div className="flex flex-wrap -mx-1.5 items-start">
         {/* Column 1 */}
-        <div className="w-1/2 px-2">
-           {renderTable(categories[0])} {/* Insumos */}
+        <div className="w-1/2 px-1.5">
+           {renderTable(categories[0])} {/* Insumos - Long List */}
            {renderTable(categories[1])} {/* Embalagens */}
         </div>
+        
         {/* Column 2 */}
-        <div className="w-1/2 px-2">
+        <div className="w-1/2 px-1.5">
            {renderTable(categories[2])} {/* Bebidas */}
            {renderTable(categories[3])} {/* Ingredientes */}
-           {renderTable(categories[4])} {/* Massas */}
-           {renderTable(categories[5])} {/* Óleos */}
+           <div className="flex gap-2">
+             <div className="w-1/2">{renderTable(categories[4])} {/* Massas */}</div>
+             <div className="w-1/2">{renderTable(categories[5])} {/* Óleos */}</div>
+           </div>
            
-           <div className="mt-8 border border-black p-2 bg-gray-50 break-inside-avoid">
-             <div className="grid grid-cols-1 gap-4">
+           <div className="mt-2 border border-black p-2 bg-gray-50 text-[9px]">
+             <div className="grid grid-cols-1 gap-2">
                <div>
-                 <label className="block font-bold mb-1">Responsável pelo inventário:</label>
-                 <input type="text" className="w-full border-b border-black bg-transparent outline-none" />
+                 <label className="block font-bold mb-0.5 uppercase">Responsável:</label>
+                 <input type="text" className="w-full border-b border-black bg-transparent outline-none h-4" />
                </div>
                <div className="flex gap-2">
                   <div className="flex-1">
-                    <label className="block font-bold mb-1">Data atual:</label>
-                    <input type="text" className="w-full border-b border-black bg-transparent outline-none" placeholder="__/__/__" />
+                    <label className="block font-bold mb-0.5 uppercase">Data atual:</label>
+                    <input type="text" className="w-full border-b border-black bg-transparent outline-none h-4" placeholder="__/__/__" />
                   </div>
                   <div className="flex-1">
-                    <label className="block font-bold mb-1">Data anterior:</label>
-                    <input type="text" className="w-full border-b border-black bg-transparent outline-none" placeholder="__/__/__" />
+                    <label className="block font-bold mb-0.5 uppercase">Data anterior:</label>
+                    <input type="text" className="w-full border-b border-black bg-transparent outline-none h-4" placeholder="__/__/__" />
                   </div>
                </div>
              </div>

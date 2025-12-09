@@ -9,7 +9,7 @@ export const WasteControl: React.FC = () => {
        {/* Landscape mode forced for printing */}
        <style>{`
         @media print {
-           @page { size: landscape; margin: 5mm; }
+           @page { size: A4 landscape; margin: 5mm; }
         }
       `}</style>
       
@@ -59,31 +59,6 @@ export const WasteControl: React.FC = () => {
       <div className="mt-4 text-center text-sm font-semibold uppercase text-gray-700">
         Atenção: Esse controle deve ser atualizado sempre que tiver um desperdício ou produto impróprio para uso.
       </div>
-
-       <div className="print:break-before-page mt-12 pt-8 border-t-2 border-dashed border-gray-300">
-         <h2 className="text-xl font-bold text-center mb-4">Guia de Preenchimento (Versão Impressa)</h2>
-         <div className="text-sm space-y-4 max-w-2xl mx-auto">
-            <p><strong>1. Complete os campos em branco:</strong></p>
-            <ul className="list-disc pl-8 space-y-1">
-               <li><strong>DATA:</strong> informe a data do registro.</li>
-               <li><strong>ITEM:</strong> descreva o produto.</li>
-               <li><strong>QTD:</strong> informe a quantidade desperdiçada.</li>
-               <li><strong>KG/UN:</strong> indique o peso ou unidade.</li>
-               <li><strong>MOTIVO:</strong> explique o motivo.</li>
-               <li><strong>DESCREVER:</strong> detalhe o ocorrido.</li>
-               <li><strong>NOME:</strong> assine seu nome.</li>
-               <li><strong>TURNO:</strong> Marque D (Dia) ou N (Noite).</li>
-            </ul>
-            <div className="bg-yellow-50 p-4 border border-yellow-200 rounded mt-4">
-              <strong>Atenção!</strong>
-              <ol className="list-decimal pl-6 mt-2 space-y-1">
-                 <li>Mantenha o controle atualizado.</li>
-                 <li>Analise os dados para identificar padrões.</li>
-                 <li>Compartilhe para reduzir o desperdício.</li>
-              </ol>
-            </div>
-         </div>
-       </div>
     </div>
   );
 };
