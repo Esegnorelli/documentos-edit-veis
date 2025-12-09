@@ -173,8 +173,13 @@ export const GeneralInventory: React.FC = () => {
 
   return (
     <div className="bg-white p-4 max-w-[210mm] mx-auto min-h-[297mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 text-xs print:w-full print:max-w-none">
-      <div className="flex justify-center mb-4">
-        <Logo className="scale-75" />
+      <div className="flex justify-between items-center mb-4 border-b-2 border-red-600 pb-1">
+         <h1 className="text-3xl font-bold text-gray-900 uppercase tracking-wide text-center flex-grow pl-10">
+          INVENTÁRIO
+        </h1>
+        <div className="transform scale-75 origin-right">
+           <Logo />
+        </div>
       </div>
       
       <div className="flex flex-wrap -mx-2">

@@ -30,7 +30,7 @@ const App: React.FC = () => {
       <aside className="w-full md:w-80 bg-gray-900 text-white flex-shrink-0 no-print flex flex-col transition-all duration-300">
         <div className="p-6 flex flex-col items-center border-b border-gray-800">
           <ChefHat className="w-12 h-12 text-red-500 mb-2" />
-          <h1 className="text-xl font-bold text-center leading-tight">Hora do Pastel <span className="text-yellow-400 block text-sm font-normal">Manager</span></h1>
+          <h1 className="text-xl font-bold text-center leading-tight">Hora do Pastel <span className="text-yellow-400 block text-sm font-normal">Controles</span></h1>
         </div>
         
         <nav className="flex-grow p-4 space-y-2">
@@ -55,7 +55,7 @@ const App: React.FC = () => {
             className={`w-full flex items-center p-3 rounded-lg transition-colors text-sm font-medium whitespace-nowrap ${activeTab === 'general_inventory' ? 'bg-red-600 text-white' : 'hover:bg-gray-800 text-gray-300'}`}
           >
             <ClipboardList className="w-5 h-5 mr-3 flex-shrink-0" />
-            Estoque Geral
+            Inventário
           </button>
 
            <button 
