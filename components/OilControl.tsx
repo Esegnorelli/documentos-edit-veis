@@ -45,7 +45,7 @@ export const OilControl: React.FC = () => {
         {/* LEFT PANEL: Troca & Filtragem */}
         <div className="w-1/2 flex flex-col gap-3 h-full">
             
-            {/* Troca de Óleo - Uses slightly taller rows to fill space */}
+            {/* Troca de Óleo - Reduced to 5 rows (approx 1 month at 7 days) to save space */}
             <div className="flex-grow">
               <h3 className="font-bold text-center text-xs py-1 bg-gray-200 border border-black border-b-0 uppercase">Troca de óleo</h3>
               <table className="w-full border border-black text-xs h-full">
@@ -57,7 +57,7 @@ export const OilControl: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {Array.from({ length: 10 }).map((_, i) => (
+                  {Array.from({ length: 5 }).map((_, i) => (
                     <tr key={i} className="h-7 border-b border-black">
                        <td className="border-r border-black p-0 relative">
                           {i === 0 && <span className="absolute left-1 top-1 text-[9px] font-bold">→</span>}
@@ -71,7 +71,7 @@ export const OilControl: React.FC = () => {
               </table>
             </div>
 
-            {/* Filtragem - Two side-by-side tables */}
+            {/* Filtragem - Two side-by-side tables. 10 rows total per month is accurate (every 3 days). */}
             <div className="flex-grow">
                 <h3 className="font-bold text-center text-xs py-1 bg-gray-200 border border-black border-b-0 uppercase">Filtragem do óleo</h3>
                 <div className="flex gap-0">
@@ -121,7 +121,7 @@ export const OilControl: React.FC = () => {
         <div className="w-1/2 flex flex-col h-full">
           <h3 className="font-bold text-center text-xs py-1 bg-gray-200 border border-black border-b-0 uppercase">Reposição Diária</h3>
           <div className="flex gap-0 h-full">
-             {/* Reposição Table 1 */}
+             {/* Reposição Table 1 - Reduced to 16 rows (Total 32 slots for full month + 1) */}
             <table className="w-1/2 border border-black text-xs h-auto border-r-0">
               <thead>
                 <tr className="bg-gray-100 border-b border-black">
@@ -131,7 +131,7 @@ export const OilControl: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {Array.from({ length: 22 }).map((_, i) => (
+                {Array.from({ length: 16 }).map((_, i) => (
                    <tr key={i} className="h-6 border-b border-black">
                       <td className="border-r border-black p-0 relative">
                         {i === 0 && <span className="absolute left-1 top-1 text-[9px] font-bold">→</span>}
@@ -154,7 +154,7 @@ export const OilControl: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {Array.from({ length: 22 }).map((_, i) => (
+                {Array.from({ length: 16 }).map((_, i) => (
                    <tr key={i} className="h-6 border-b border-black">
                       <td className="border-r border-black p-0"><input type="text" className="w-full h-full text-center outline-none bg-transparent" placeholder="__/__" /></td>
                       <td className="border-r border-black p-0"><input type="text" className="w-full h-full text-center outline-none bg-transparent" /></td>

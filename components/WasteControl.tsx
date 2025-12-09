@@ -2,7 +2,7 @@ import React from 'react';
 import { Logo } from './Logo';
 
 export const WasteControl: React.FC = () => {
-  const rows = 20;
+  const rows = 16;
 
   return (
     <div className="bg-white p-8 w-[297mm] mx-auto min-h-[210mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 print:w-full">
