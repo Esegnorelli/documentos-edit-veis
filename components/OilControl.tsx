@@ -12,7 +12,7 @@ export const OilControl: React.FC = () => {
       `}</style>
       
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 border-b-2 border-red-600 pb-2">
+      <div className="flex justify-between items-center mb-1.5 border-b-2 border-red-600 pb-1">
          <h1 className="text-2xl font-bold text-gray-900 uppercase tracking-wide text-center flex-grow">
           Controle de Troca e Reposição de Óleo
         </h1>
@@ -22,17 +22,17 @@ export const OilControl: React.FC = () => {
       </div>
 
       {/* Warning Box */}
-      <div className="border-2 border-red-500 bg-red-50 p-2 mb-3 text-center text-xs flex justify-between items-center px-6 rounded-md">
+      <div className="border-2 border-red-500 bg-red-50 p-1.5 mb-2 text-center text-xs flex justify-between items-center px-4 rounded-md">
          <div className="flex flex-col items-start text-left">
             <strong className="text-red-700 uppercase">ATENÇÃO!</strong>
-            <span className="font-medium">Troca: Máx 07 dias | Filtragem: A cada 03 dias</span>
+            <span className="font-medium text-[11px]">Troca: Máx 07 dias | Filtragem: A cada 03 dias</span>
          </div>
          <div className="flex items-center gap-2 text-sm font-bold">
-            <span>Temp. Fritadeira (150°C a 170°C). Ideal:</span>
+            <span>Temp. Ideal (150°C a 170°C):</span>
             <input type="text" className="w-12 text-center bg-transparent border-b-2 border-red-400 outline-none text-red-900" placeholder="___" />
             <span>°C</span>
          </div>
-         <div className="text-right leading-tight text-[11px] font-medium text-gray-700">
+         <div className="text-right leading-tight text-[10px] font-medium text-gray-700">
              <span>Nível do óleo: Respeitar limite</span>
              <br/>
              <span>"→": Repetir data anterior</span>
@@ -43,11 +43,11 @@ export const OilControl: React.FC = () => {
       <div className="flex gap-4 flex-grow items-start h-full">
         
         {/* LEFT PANEL: Troca & Filtragem */}
-        <div className="w-1/2 flex flex-col gap-4 h-full">
+        <div className="w-1/2 flex flex-col gap-3 h-full">
             
-            {/* Troca de Óleo - Increased spacing */}
+            {/* Troca de Óleo - Uses slightly taller rows to fill space */}
             <div className="flex-grow">
-              <h3 className="font-bold text-center text-sm py-1 bg-gray-200 border border-black border-b-0 uppercase">Troca de óleo</h3>
+              <h3 className="font-bold text-center text-xs py-1 bg-gray-200 border border-black border-b-0 uppercase">Troca de óleo</h3>
               <table className="w-full border border-black text-xs h-full">
                 <thead>
                   <tr className="bg-gray-100 border-b border-black">
@@ -58,7 +58,7 @@ export const OilControl: React.FC = () => {
                 </thead>
                 <tbody>
                   {Array.from({ length: 10 }).map((_, i) => (
-                    <tr key={i} className="h-8 border-b border-black">
+                    <tr key={i} className="h-7 border-b border-black">
                        <td className="border-r border-black p-0 relative">
                           {i === 0 && <span className="absolute left-1 top-1 text-[9px] font-bold">→</span>}
                           <input type="text" className="w-full h-full text-center outline-none bg-transparent" placeholder="__/__" />
@@ -73,7 +73,7 @@ export const OilControl: React.FC = () => {
 
             {/* Filtragem - Two side-by-side tables */}
             <div className="flex-grow">
-                <h3 className="font-bold text-center text-sm py-1 bg-gray-200 border border-black border-b-0 uppercase">Filtragem do óleo</h3>
+                <h3 className="font-bold text-center text-xs py-1 bg-gray-200 border border-black border-b-0 uppercase">Filtragem do óleo</h3>
                 <div className="flex gap-0">
                      {/* Filtragem Table 1 */}
                      <table className="w-1/2 border border-black text-xs border-r-0">
@@ -85,7 +85,7 @@ export const OilControl: React.FC = () => {
                         </thead>
                         <tbody>
                           {Array.from({ length: 10 }).map((_, i) => (
-                            <tr key={i} className="h-8 border-b border-black">
+                            <tr key={i} className="h-7 border-b border-black">
                               <td className="border-r border-black p-0 relative">
                                  {i === 0 && <span className="absolute left-1 top-1 text-[9px] font-bold">→</span>}
                                  <input type="text" className="w-full h-full text-center outline-none bg-transparent" placeholder="__/__" />
@@ -106,7 +106,7 @@ export const OilControl: React.FC = () => {
                         </thead>
                         <tbody>
                           {Array.from({ length: 10 }).map((_, i) => (
-                            <tr key={i} className="h-8 border-b border-black">
+                            <tr key={i} className="h-7 border-b border-black">
                               <td className="border-r border-black p-0"><input type="text" className="w-full h-full text-center outline-none bg-transparent" placeholder="__/__" /></td>
                               <td className="p-0"><input type="text" className="w-full h-full outline-none bg-transparent px-2" /></td>
                             </tr>
@@ -119,7 +119,7 @@ export const OilControl: React.FC = () => {
 
         {/* RIGHT PANEL: Reposição */}
         <div className="w-1/2 flex flex-col h-full">
-          <h3 className="font-bold text-center text-sm py-1 bg-gray-200 border border-black border-b-0 uppercase">Reposição Diária</h3>
+          <h3 className="font-bold text-center text-xs py-1 bg-gray-200 border border-black border-b-0 uppercase">Reposição Diária</h3>
           <div className="flex gap-0 h-full">
              {/* Reposição Table 1 */}
             <table className="w-1/2 border border-black text-xs h-auto border-r-0">
@@ -132,7 +132,7 @@ export const OilControl: React.FC = () => {
               </thead>
               <tbody>
                 {Array.from({ length: 22 }).map((_, i) => (
-                   <tr key={i} className="h-7 border-b border-black">
+                   <tr key={i} className="h-6 border-b border-black">
                       <td className="border-r border-black p-0 relative">
                         {i === 0 && <span className="absolute left-1 top-1 text-[9px] font-bold">→</span>}
                         <input type="text" className="w-full h-full text-center outline-none bg-transparent" placeholder="__/__" />
@@ -155,7 +155,7 @@ export const OilControl: React.FC = () => {
               </thead>
               <tbody>
                 {Array.from({ length: 22 }).map((_, i) => (
-                   <tr key={i} className="h-7 border-b border-black">
+                   <tr key={i} className="h-6 border-b border-black">
                       <td className="border-r border-black p-0"><input type="text" className="w-full h-full text-center outline-none bg-transparent" placeholder="__/__" /></td>
                       <td className="border-r border-black p-0"><input type="text" className="w-full h-full text-center outline-none bg-transparent" /></td>
                       <td className="p-0"><input type="text" className="w-full h-full outline-none bg-transparent px-1" /></td>
