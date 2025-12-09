@@ -2,21 +2,17 @@ import React from 'react';
 import { Logo } from './Logo';
 
 export const OilControl: React.FC = () => {
-  const renderRow = (count: number) => {
-    return Array.from({ length: count }).map((_, i) => (
-      <tr key={i} className="h-8 border-b border-gray-400">
-        <td className="border-r border-gray-400 p-1"><input type="text" className="w-full h-full text-center bg-transparent outline-none" placeholder="__/__" /></td>
-        {/* Some tables have different columns, handled in parent */}
-      </tr>
-    ));
-  };
-
   return (
-    <div className="bg-white p-8 max-w-[210mm] mx-auto min-h-[297mm] shadow-lg print:shadow-none print:p-0 print:w-full print:max-w-none">
+    <div className="bg-white p-4 max-w-[297mm] mx-auto min-h-[210mm] shadow-lg print:shadow-none print:p-0 landscape:w-full print:w-full print:max-w-none flex flex-col h-full">
+       <style>{`
+        @media print {
+           @page { size: A4 landscape; margin: 5mm; }
+        }
+      `}</style>
       
       {/* Header */}
-      <div className="flex justify-between items-center mb-6 border-b-2 border-red-600 pb-4">
-         <h1 className="text-3xl font-bold text-gray-900 uppercase tracking-wide text-center flex-grow">
+      <div className="flex justify-between items-center mb-2 border-b-2 border-red-600 pb-1">
+         <h1 className="text-2xl font-bold text-gray-900 uppercase tracking-wide text-center flex-grow">
           Controle de Troca e Reposição de Óleo
         </h1>
         <div className="transform scale-75 origin-right">
@@ -25,87 +21,93 @@ export const OilControl: React.FC = () => {
       </div>
 
       {/* Warning Box */}
-      <div className="border border-red-500 bg-red-50 p-2 mb-6 text-center text-sm">
-        <strong className="text-red-600 block text-lg mb-1">ATENÇÃO!</strong>
-        <p>A troca de óleo, máximo 07 dias</p>
-        <p>A filtragem a cada 03 dias</p>
-        <p>Respeitar o limite do nível do óleo</p>
-        <p className="flex justify-center items-center gap-1">
-          Respeitar a temperatura de fritadeira (150C° a 170C°) - Verificar temperatura ideal desta fritadeira 
-          <input type="text" className="w-12 text-center bg-transparent border-b border-red-400 outline-none" placeholder="____" />
-          C°
-        </p>
-        <p>Na sinalização com o ícone " → " preencher com a data do relatório anterior</p>
+      <div className="border border-red-500 bg-red-50 p-1 mb-2 text-center text-xs flex justify-between items-center px-4">
+         <div className="flex flex-col items-start text-left">
+            <strong className="text-red-600">ATENÇÃO!</strong>
+            <span>Troca: Máx 07 dias | Filtragem: A cada 03 dias</span>
+         </div>
+         <div className="flex items-center gap-2">
+            <span>Temp. Fritadeira (150°C a 170°C). Ideal:</span>
+            <input type="text" className="w-10 text-center bg-transparent border-b border-red-400 outline-none font-bold" placeholder="___" />
+            <span>°C</span>
+         </div>
+         <div className="text-right">
+             <span>Nível do óleo: Respeitar limite</span>
+             <br/>
+             <span>"→": Repetir data anterior</span>
+         </div>
       </div>
 
-      {/* Forms Grid */}
-      <div className="grid grid-cols-2 gap-8 mb-8">
+      {/* Main Grid */}
+      <div className="flex gap-4 flex-grow items-start">
         
-        {/* Left Column: Troca and Filtragem */}
-        <div className="flex flex-col gap-8">
-            {/* Troca de Óleo */}
+        {/* LEFT PANEL: Troca & Filtragem */}
+        <div className="w-1/2 flex flex-col gap-2">
+            
+            {/* Troca de Óleo - Full Width of Left Panel */}
             <div>
-              <h3 className="font-bold text-center mb-2">Troca de óleo</h3>
-              <table className="w-full border border-black text-sm">
+              <h3 className="font-bold text-center text-sm mb-1 bg-gray-100 border border-black border-b-0">Troca de óleo</h3>
+              <table className="w-full border border-black text-xs">
                 <thead>
-                  <tr className="bg-gray-100 border-b border-black">
-                    <th className="border-r border-black w-24 py-1">Data</th>
-                    <th className="border-r border-black py-1">Quant. óleo</th>
+                  <tr className="bg-gray-200 border-b border-black">
+                    <th className="border-r border-black w-20 py-1">Data</th>
+                    <th className="border-r border-black py-1">Quant. (L)</th>
                     <th className="py-1">Assinatura</th>
                   </tr>
                 </thead>
                 <tbody>
                   {Array.from({ length: 9 }).map((_, i) => (
-                    <tr key={i} className="h-7 border-b border-black">
-                       <td className="border-r border-black p-1 relative">
-                          {i === 0 && <span className="absolute -left-4 top-1">→</span>}
-                          <input type="text" className="w-full text-center outline-none bg-transparent" placeholder="__/__/__" />
+                    <tr key={i} className="h-5 border-b border-black">
+                       <td className="border-r border-black p-0 relative">
+                          {i === 0 && <span className="absolute left-0 top-0 text-[8px] px-1">→</span>}
+                          <input type="text" className="w-full h-full text-center outline-none bg-transparent" placeholder="__/__" />
                        </td>
-                       <td className="border-r border-black p-1 flex items-center">
-                         <input type="text" className="w-full text-right outline-none bg-transparent pr-1" /> Lts
-                       </td>
-                       <td className="p-1"><input type="text" className="w-full outline-none bg-transparent" /></td>
+                       <td className="border-r border-black p-0"><input type="text" className="w-full h-full text-center outline-none bg-transparent" /></td>
+                       <td className="p-0"><input type="text" className="w-full h-full outline-none bg-transparent px-1" /></td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
 
-            {/* Filtragem */}
+            {/* Filtragem - Two side-by-side tables */}
             <div>
-                <h3 className="font-bold text-center mb-2">Filtragem do óleo</h3>
+                <h3 className="font-bold text-center text-sm mb-1 bg-gray-100 border border-black border-b-0">Filtragem do óleo</h3>
                 <div className="flex gap-2">
-                     <table className="w-full border border-black text-sm">
+                     {/* Filtragem Table 1 */}
+                     <table className="w-1/2 border border-black text-xs">
                         <thead>
-                          <tr className="bg-gray-100 border-b border-black">
-                            <th className="border-r border-black w-24 py-1">Data</th>
+                          <tr className="bg-gray-200 border-b border-black">
+                            <th className="border-r border-black w-16 py-1">Data</th>
                             <th className="py-1">Assinatura</th>
                           </tr>
                         </thead>
                         <tbody>
                           {Array.from({ length: 9 }).map((_, i) => (
-                            <tr key={i} className="h-7 border-b border-black">
-                              <td className="border-r border-black p-1 relative">
-                                 {i === 0 && <span className="absolute -left-4 top-1">→</span>}
-                                 <input type="text" className="w-full text-center outline-none bg-transparent" placeholder="__/__/__" />
+                            <tr key={i} className="h-5 border-b border-black">
+                              <td className="border-r border-black p-0 relative">
+                                 {i === 0 && <span className="absolute left-0 top-0 text-[8px] px-1">→</span>}
+                                 <input type="text" className="w-full h-full text-center outline-none bg-transparent" placeholder="__/__" />
                               </td>
-                              <td className="p-1"><input type="text" className="w-full outline-none bg-transparent" /></td>
+                              <td className="p-0"><input type="text" className="w-full h-full outline-none bg-transparent px-1" /></td>
                             </tr>
                           ))}
                         </tbody>
                      </table>
-                     <table className="w-full border border-black text-sm">
+                     
+                     {/* Filtragem Table 2 */}
+                     <table className="w-1/2 border border-black text-xs">
                         <thead>
-                          <tr className="bg-gray-100 border-b border-black">
-                            <th className="border-r border-black w-24 py-1">Data</th>
+                          <tr className="bg-gray-200 border-b border-black">
+                            <th className="border-r border-black w-16 py-1">Data</th>
                             <th className="py-1">Assinatura</th>
                           </tr>
                         </thead>
                         <tbody>
                           {Array.from({ length: 9 }).map((_, i) => (
-                            <tr key={i} className="h-7 border-b border-black">
-                              <td className="border-r border-black p-1"><input type="text" className="w-full text-center outline-none bg-transparent" placeholder="__/__/__" /></td>
-                              <td className="p-1"><input type="text" className="w-full outline-none bg-transparent" /></td>
+                            <tr key={i} className="h-5 border-b border-black">
+                              <td className="border-r border-black p-0"><input type="text" className="w-full h-full text-center outline-none bg-transparent" placeholder="__/__" /></td>
+                              <td className="p-0"><input type="text" className="w-full h-full outline-none bg-transparent px-1" /></td>
                             </tr>
                           ))}
                         </tbody>
@@ -114,46 +116,48 @@ export const OilControl: React.FC = () => {
             </div>
         </div>
 
-        {/* Right Column: Reposição */}
-        <div className="h-full flex flex-col">
-          <h3 className="font-bold text-center mb-2">Reposição</h3>
-          <div className="flex h-full">
-             {/* Two columns for reposição */}
-            <table className="w-full border border-black text-sm mr-1 h-full">
+        {/* RIGHT PANEL: Reposição */}
+        <div className="w-1/2 flex flex-col h-full">
+          <h3 className="font-bold text-center text-sm mb-1 bg-gray-100 border border-black border-b-0">Reposição</h3>
+          <div className="flex gap-2 h-full">
+             {/* Reposição Table 1 */}
+            <table className="w-1/2 border border-black text-xs h-auto">
               <thead>
-                <tr className="bg-gray-100 border-b border-black h-8">
-                   <th className="border-r border-black w-16 py-1">Data</th>
-                   <th className="border-r border-black w-16 py-1">Qtde</th>
+                <tr className="bg-gray-200 border-b border-black">
+                   <th className="border-r border-black w-12 py-1">Data</th>
+                   <th className="border-r border-black w-10 py-1">Qtd</th>
                    <th className="py-1">Assin.</th>
                 </tr>
               </thead>
-              <tbody className="align-top">
+              <tbody>
                 {Array.from({ length: 19 }).map((_, i) => (
-                   <tr key={i} className="h-7 border-b border-black">
-                      <td className="border-r border-black p-1 relative">
-                        {i === 0 && <span className="absolute -left-4 top-1">→</span>}
-                        <input type="text" className="w-full text-center outline-none bg-transparent text-xs" placeholder="__/__" />
+                   <tr key={i} className="h-5 border-b border-black">
+                      <td className="border-r border-black p-0 relative">
+                        {i === 0 && <span className="absolute left-0 top-0 text-[8px] px-1">→</span>}
+                        <input type="text" className="w-full h-full text-center outline-none bg-transparent" placeholder="__/__" />
                       </td>
-                      <td className="border-r border-black p-1 text-xs"><input type="text" className="w-8 text-right outline-none bg-transparent" />Lts</td>
-                      <td className="p-1"><input type="text" className="w-full outline-none bg-transparent" /></td>
+                      <td className="border-r border-black p-0"><input type="text" className="w-full h-full text-center outline-none bg-transparent" /></td>
+                      <td className="p-0"><input type="text" className="w-full h-full outline-none bg-transparent px-1" /></td>
                    </tr>
                 ))}
               </tbody>
             </table>
-            <table className="w-full border border-black text-sm ml-1 h-full">
+            
+             {/* Reposição Table 2 */}
+            <table className="w-1/2 border border-black text-xs h-auto">
               <thead>
-                <tr className="bg-gray-100 border-b border-black h-8">
-                   <th className="border-r border-black w-16 py-1">Data</th>
-                   <th className="border-r border-black w-16 py-1">Qtde</th>
+                <tr className="bg-gray-200 border-b border-black">
+                   <th className="border-r border-black w-12 py-1">Data</th>
+                   <th className="border-r border-black w-10 py-1">Qtd</th>
                    <th className="py-1">Assin.</th>
                 </tr>
               </thead>
-              <tbody className="align-top">
+              <tbody>
                 {Array.from({ length: 19 }).map((_, i) => (
-                   <tr key={i} className="h-7 border-b border-black">
-                      <td className="border-r border-black p-1"><input type="text" className="w-full text-center outline-none bg-transparent text-xs" placeholder="__/__" /></td>
-                      <td className="border-r border-black p-1 text-xs"><input type="text" className="w-8 text-right outline-none bg-transparent" />Lts</td>
-                      <td className="p-1"><input type="text" className="w-full outline-none bg-transparent" /></td>
+                   <tr key={i} className="h-5 border-b border-black">
+                      <td className="border-r border-black p-0"><input type="text" className="w-full h-full text-center outline-none bg-transparent" placeholder="__/__" /></td>
+                      <td className="border-r border-black p-0"><input type="text" className="w-full h-full text-center outline-none bg-transparent" /></td>
+                      <td className="p-0"><input type="text" className="w-full h-full outline-none bg-transparent px-1" /></td>
                    </tr>
                 ))}
               </tbody>
@@ -162,76 +166,41 @@ export const OilControl: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-4 pt-4 border-t-2 border-black">
-        <div className="flex items-end">
-            <span className="text-xl font-bold mr-4">FRITADEIRA</span>
-            <input type="text" className="border-b border-black flex-grow outline-none text-xl" />
+      <div className="mt-2 pt-1 border-t-2 border-black flex justify-end">
+        <div className="flex items-end w-1/3">
+            <span className="text-sm font-bold mr-2">RESPONSÁVEL:</span>
+            <input type="text" className="border-b border-black flex-grow outline-none text-sm" />
         </div>
       </div>
       
-      {/* Page Break for procedures */}
-      <div className="print:break-before-page mt-12 pt-8 border-t-4 border-double border-gray-300">
-        <h2 className="text-2xl font-bold text-center mb-6">Manual de Procedimentos:</h2>
-        
-        <div className="grid grid-cols-3 gap-4 text-sm">
-           {/* Col 1 */}
-           <div className="border border-black p-4 rounded">
-              <h3 className="font-bold text-center border-b border-gray-300 pb-2 mb-2">Troca de Óleo</h3>
-              <p className="text-center italic mb-4 text-gray-600">Informativo</p>
-              <ul className="list-disc pl-4 space-y-1 mb-4">
-                <li>Verificar a viscosidade do óleo</li>
-                <li>Checar periodicamente</li>
-                <li>Fazer a troca em até 7 dias</li>
-              </ul>
-              <div className="border-t border-gray-300 pt-2">
-                 <h4 className="font-semibold text-center mb-2">Procedimento</h4>
-                 <ul className="text-xs space-y-2">
-                   <li>Executar a troca de óleo</li>
-                   <li>Desligue a fritadeira da tomada</li>
-                   <li>Certifique-se de que o óleo está frio</li>
-                   <li>Retire a cuba da fritadeira</li>
-                   <li>Despeje o óleo usado no galão destinado à coleta</li>
-                   <li>Lave e higienize a cuba e fritadeira</li>
-                   <li>Limpe a resistência com pano úmido cuidadosamente</li>
-                   <li>Remonte a fritadeira e reponha o óleo até o nível pré-estabelecido</li>
-                 </ul>
-              </div>
-           </div>
-
-           {/* Col 2 */}
-           <div className="border border-black p-4 rounded">
-              <h3 className="font-bold text-center border-b border-gray-300 pb-2 mb-2">Filtragem de óleo</h3>
-              <p className="text-center italic mb-4 text-gray-600">Informativo</p>
-              <p className="mb-4">Realize a filtragem de óleo a cada 3 dias para evitar o acúmulo de sujeira no fundo da fritadeira.</p>
-              <div className="border-t border-gray-300 pt-2">
-                 <h4 className="font-semibold text-center mb-2">Procedimento</h4>
-                 <ul className="text-xs space-y-2">
-                   <li>Executar a filtragem de óleo</li>
-                   <li>Desligue a fritadeira da tomada</li>
-                   <li>Retire a cuba e leve à pia</li>
-                   <li>Utilize outra cuba limpa e uma peneira inox para filtrar o óleo</li>
-                   <li>Lave a cuba e fritadeira suja e passe o óleo filtrado de volta a ela</li>
-                   <li>Complete a reposição de óleo, se necessário</li>
-                 </ul>
-              </div>
-           </div>
-
-           {/* Col 3 */}
-           <div className="border border-black p-4 rounded">
-              <h3 className="font-bold text-center border-b border-gray-300 pb-2 mb-2">Reposição de óleo</h3>
-              <p className="text-center italic mb-4 text-gray-600">Informativo</p>
-              <p className="mb-4">Importante para manter o nível adequado. Evita queima do alimento e perda da qualidade do óleo.</p>
-              <div className="border-t border-gray-300 pt-2">
-                 <h4 className="font-semibold text-center mb-2">Procedimento</h4>
-                 <p className="text-xs">Faça a reposição no início do turno ou durante, quando o nível estiver abaixo da marcação.</p>
-              </div>
-           </div>
-        </div>
-        
-        <div className="mt-8 text-center bg-gray-50 p-4 rounded border border-gray-200">
-           <strong className="block text-lg mb-2">Atenção!</strong>
-           <p>É importante preencher o controle sempre que os procedimentos de <strong>troca de óleo, filtragem e reposição</strong> forem realizados.</p>
-        </div>
+      {/* Manual de Procedimentos - Condensed Footer */}
+      <div className="mt-2 border border-gray-300 p-2 rounded bg-gray-50 text-[10px] leading-tight">
+         <h4 className="font-bold text-center mb-1 text-xs">MANUAL DE PROCEDIMENTOS</h4>
+         <div className="grid grid-cols-3 gap-4">
+            <div>
+               <strong className="block text-red-700">TROCA (7 dias)</strong>
+               <ul className="list-disc pl-3">
+                 <li>Desligue a fritadeira e espere esfriar.</li>
+                 <li>Retire cuba, despeje óleo no galão de coleta.</li>
+                 <li>Higienize cuba e resistência (pano úmido).</li>
+                 <li>Remonte e reponha óleo novo.</li>
+               </ul>
+            </div>
+            <div>
+               <strong className="block text-red-700">FILTRAGEM (3 dias)</strong>
+               <ul className="list-disc pl-3">
+                 <li>Desligue e retire a cuba.</li>
+                 <li>Filtre o óleo com peneira inox em outra cuba.</li>
+                 <li>Lave a fritadeira suja.</li>
+                 <li>Retorne o óleo filtrado e complete se necessário.</li>
+               </ul>
+            </div>
+            <div>
+               <strong className="block text-red-700">REPOSIÇÃO (Diária)</strong>
+               <p>Faça a reposição sempre que o nível estiver baixo para evitar queima do alimento. Mantenha no nível indicado.</p>
+               <p className="mt-1 italic font-semibold">Preencha este controle após cada procedimento!</p>
+            </div>
+         </div>
       </div>
 
     </div>
