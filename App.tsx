@@ -3,6 +3,7 @@ import { OilControl } from './components/OilControl';
 import { WasteControl } from './components/WasteControl';
 import { GeneralInventory } from './components/GeneralInventory';
 import { DailyStock } from './components/DailyStock';
+import { NolaInventory } from './components/NolaInventory';
 import { DocumentType } from './types';
 import { Printer, FileText, Trash2, ClipboardList, ChefHat } from 'lucide-react';
 
@@ -19,6 +20,7 @@ const App: React.FC = () => {
       case 'waste': return <WasteControl />;
       case 'general_inventory': return <GeneralInventory />;
       case 'daily_stock': return <DailyStock />;
+      case 'nola_inventory': return <NolaInventory />;
       default: return <OilControl />;
     }
   };
@@ -55,7 +57,15 @@ const App: React.FC = () => {
             className={`w-full flex items-center p-3 rounded-lg transition-colors text-sm font-medium whitespace-nowrap ${activeTab === 'general_inventory' ? 'bg-red-600 text-white' : 'hover:bg-gray-800 text-gray-300'}`}
           >
             <ClipboardList className="w-5 h-5 mr-3 flex-shrink-0" />
-            Inventário
+            Inventário Geral
+          </button>
+
+           <button 
+            onClick={() => setActiveTab('nola_inventory')}
+            className={`w-full flex items-center p-3 rounded-lg transition-colors text-sm font-medium whitespace-nowrap ${activeTab === 'nola_inventory' ? 'bg-red-600 text-white' : 'hover:bg-gray-800 text-gray-300'}`}
+          >
+            <ClipboardList className="w-5 h-5 mr-3 flex-shrink-0" />
+            Inventário - Sistema Nola
           </button>
 
            <button 

@@ -8,4 +8,4 @@ export interface InventoryCategory {
   items: InventoryItem[];
 }
 
-export type DocumentType = 'oil' | 'waste' | 'general_inventory' | 'daily_stock';
+export type DocumentType = 'oil' | 'waste' | 'general_inventory' | 'daily_stock' | 'nola_inventory';
