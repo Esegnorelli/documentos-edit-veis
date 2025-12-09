@@ -2,7 +2,7 @@ import React from 'react';
 import { Logo } from './Logo';
 
 export const DailyStock: React.FC = () => {
-  const renderSimpleTable = (title: string, items: string[], rows = items.length) => (
+  const renderSimpleTable = (title: string, items: string[], rows = items.length, unit = "un") => (
     <div className="mb-2 print:break-inside-avoid">
       <table className="w-full border-collapse border border-gray-600 text-[9px] leading-tight">
         <thead>
@@ -24,7 +24,7 @@ export const DailyStock: React.FC = () => {
               <td className="border border-gray-600 px-1 bg-white">
                   <div className="flex justify-between items-center h-full">
                      <input type="text" className="w-full h-full bg-transparent outline-none text-right" />
-                     <span className="text-[8px] text-gray-500 ml-1">un</span>
+                     <span className="text-[8px] text-gray-500 ml-1">{unit}</span>
                   </div>
               </td>
             </tr>
@@ -35,7 +35,7 @@ export const DailyStock: React.FC = () => {
                 <td className="border border-gray-600 px-1 bg-white">
                   <div className="flex justify-between items-center h-full">
                      <input type="text" className="w-full h-full bg-transparent outline-none text-right" />
-                     <span className="text-[8px] text-gray-500 ml-1">un</span>
+                     <span className="text-[8px] text-gray-500 ml-1">{unit}</span>
                   </div>
                 </td>
              </tr>
@@ -62,7 +62,7 @@ export const DailyStock: React.FC = () => {
         </div>
       </div>
 
-      {/* Complex Meat Table */}
+      {/* Complex Meat Table - FIXED as requested */}
       <div className="mb-2">
         <div className="text-[10px] font-bold mb-0.5 italic">Resfriados (Carnes)</div>
         <table className="w-full border-collapse border border-gray-600 text-[9px]">
@@ -100,41 +100,64 @@ export const DailyStock: React.FC = () => {
         </table>
       </div>
 
-      {/* Columns for lists */}
+      {/* Columns for lists - Reorganized Categories */}
       <div className="flex gap-3 items-start">
         
-        {/* Col 1 */}
+        {/* Col 1: Doces */}
         <div className="flex-1">
-          {renderSimpleTable("Diversos", [
-            "Azeitona", "Batata Palha", "Batata Palito", "Batata Smile", "Bis",
-            "BomBom", "Canela", "Coco Ralado", "Kit Kat", "M&Ms", "Milho",
-            "Óleo Algodão", "Orégano", "Oreo", "Palmito", "Sikadinho", "Tomate Seco"
-          ], 23)}
+          {renderSimpleTable("Chocolates & Bisnagas Doces", [
+            "Bisnaga Choc. Preto", 
+            "Bisnaga Choc. Branco", 
+            "Bisnaga Meio Amargo", 
+            "Bisnaga Creme de Avelã", 
+            "Bisnaga de Goiaba"
+          ])}
+
+          {renderSimpleTable("Doces & Sobremesas", [
+             "Banana", "Bis", "BomBom", "Canela", 
+             "Coco Ralado", "Kit Kat", "M&Ms", 
+             "Oreo", "Stikadinho"
+          ])}
         </div>
 
-        {/* Col 2 */}
+        {/* Col 2: Hortifruti, Diversos & Frituras */}
         <div className="flex-1">
-           {renderSimpleTable("Massas", ["Massa Grande", "Massa Pequena"])}
-           {renderSimpleTable("Laticínios & Embutidos", [
-             "Bacon Cru", "Calabresa", "Cheddar", "Muçarela", "Parmesão", 
-             "Provolone", "Requeijão"
+           {renderSimpleTable("Hortifruti", [
+             "Brócolis", "Cenoura", "Tempero Verde"
+           ])}
+
+           {renderSimpleTable("Diversos", [
+             "Alho Caramelizado", "Azeitona", "Cebola Caramelizada", 
+             "Milho", "Orégano", "Ovo", "Palmito", "Tomate Seco"
            ])}
            
-           <div className="mt-2 border border-gray-600 p-2 text-[9px] h-24">
-             <strong className="block mb-1">Observações:</strong>
-             <textarea className="w-full h-16 resize-none bg-transparent outline-none" placeholder="Digite observações aqui..."></textarea>
-           </div>
+           {renderSimpleTable("Frituras & Acompanhamentos", [
+             "Batata Palha", "Batata Palito", "Batata Smile", "Óleo Algodão"
+           ])}
         </div>
 
-        {/* Col 3 */}
+        {/* Col 3: Massas, Queijos e Crus */}
         <div className="flex-1">
-           {renderSimpleTable("Hortifruti", ["Banana", "Brócolis", "Cenoura", "Ovo", "Tempero Verde"])}
-           {renderSimpleTable("Chocolates & Caramelizados", [
-             "Alho Caramelizado", "Cebola Caramelizada", "Chocolate Preto", 
-             "Chocolate Branco", "Chocolate Amargo", "Avelã", "Goiabada"
-           ])}
+           <div className="flex gap-2">
+             <div className="w-1/2">{renderSimpleTable("Massas", ["Massa Grande", "Massa Pequena"])}</div>
+             <div className="w-1/2">{renderSimpleTable("Queijos & Bisnagas", [
+               "Bisnaga Cheddar", "Bisnaga Requeijão", 
+               "Muçarela", "Parmesão", "Provolone"
+             ])}</div>
+           </div>
 
-           <div className="mt-4 border border-gray-600 p-2 bg-gray-50">
+           {/* Calabresa moved here */}
+           {renderSimpleTable("Ingredientes (Crús)", [
+             "Bacon Cru", "Calabresa", "Carne Moída", "Gado Cubos", "Gado Picado",
+             "Peito de Frango", "Sassami"
+           ], 7, "kg")}
+           
+           <div className="mt-2 border border-gray-600 p-2 text-[9px] h-16 bg-white">
+             <strong className="block mb-1">Observações:</strong>
+             <textarea className="w-full h-8 resize-none bg-transparent outline-none" placeholder="Digite observações aqui..."></textarea>
+           </div>
+           
+           <div className="mt-2 border border-gray-600 p-2 bg-gray-50">
               <div className="flex flex-col gap-2">
                  <div>
                    <label className="text-[9px] font-bold mr-2">Nome:</label>
@@ -149,7 +172,7 @@ export const DailyStock: React.FC = () => {
         </div>
       </div>
       
-      {/* Instructions footer - shortened version */}
+      {/* Instructions footer */}
       <div className="mt-2 border-t border-gray-400 pt-1 text-[8px] text-gray-600">
         <p><strong>Atenção:</strong> Tomate seco/Azeitonas (contar &gt; 50%). Calabresa/Muçarela (fracionar por unidade). Provolone (metade = 1 un).</p>
       </div>
