@@ -97,10 +97,10 @@ const categories: InventoryCategory[] = [
 ];
 
 export const NolaInventory: React.FC = () => {
-  // Increased row height to h-[21px] and font to text-[10.5px]
+  // Reduced row height to h-[18px] and font to text-[10px] to ensure mobile print fit
   const renderTable = (category: InventoryCategory) => (
     <div className="mb-2" key={category.title}>
-      <table className="w-full border-collapse border border-black text-[10.5px] leading-tight">
+      <table className="w-full border-collapse border border-black text-[10px] leading-tight">
         <thead>
           <tr className="bg-gray-200">
             <th className="border border-black px-1 py-0.5 text-left w-[45%] uppercase font-bold">{category.title}</th>
@@ -112,11 +112,11 @@ export const NolaInventory: React.FC = () => {
         </thead>
         <tbody>
           {category.items.map((item, i) => (
-            <tr key={i} className="border-b border-black h-[21px]">
+            <tr key={i} className="border-b border-black h-[18px]">
               <td className="border-r border-black px-1 font-medium whitespace-nowrap overflow-hidden align-middle">
                 <span className="block truncate">{item.name}</span>
               </td>
-              <td className="border-r border-black px-0.5 text-center bg-gray-50 text-[9.5px] align-middle">{item.unit}</td>
+              <td className="border-r border-black px-0.5 text-center bg-gray-50 text-[9px] align-middle">{item.unit}</td>
               <td className="border-r border-black px-0.5"><input type="text" className="w-full h-full bg-transparent outline-none text-center" /></td>
               <td className="border-r border-black px-0.5"><input type="text" className="w-full h-full bg-transparent outline-none text-center" /></td>
               <td className="px-0.5"><input type="text" className="w-full h-full bg-transparent outline-none text-center font-bold" /></td>
@@ -128,53 +128,55 @@ export const NolaInventory: React.FC = () => {
   );
 
   return (
-    <div className="bg-white p-4 max-w-[210mm] mx-auto min-h-[297mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 text-[10.5px] print:w-full print:max-w-none overflow-hidden">
-      <style>{`
-        @media print {
-           @page { size: A4 portrait; margin: 4mm; }
-           body { -webkit-print-color-adjust: exact; }
-        }
-      `}</style>
+    <div className="w-full overflow-x-auto">
+      <div className="bg-white p-2 md:p-4 min-w-[210mm] max-w-[210mm] mx-auto min-h-[297mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 text-[10px] print:w-full print:max-w-none overflow-hidden">
+        <style>{`
+          @media print {
+             @page { size: A4 portrait; margin: 3mm; }
+             body { -webkit-print-color-adjust: exact; }
+          }
+        `}</style>
 
-      <div className="flex justify-between items-center mb-1.5 border-b border-red-600 pb-1">
-         <h1 className="text-xl font-bold text-gray-900 uppercase tracking-wide text-center flex-grow pl-10">
-          INVENTÁRIO - SISTEMA NOLA
-        </h1>
-        <div className="transform scale-75 origin-right">
-           <Logo />
-        </div>
-      </div>
-      
-      <div className="flex flex-wrap -mx-1.5 items-start">
-        {/* Column 1: Bebidas (Long list) */}
-        <div className="w-1/2 px-1.5">
-           {renderTable(categories[0])} {/* Bebidas */}
+        <div className="flex justify-between items-center mb-1.5 border-b border-red-600 pb-1">
+           <h1 className="text-xl font-bold text-gray-900 uppercase tracking-wide text-center flex-grow pl-10">
+            INVENTÁRIO - SISTEMA NOLA
+          </h1>
+          <div className="transform scale-75 origin-right">
+             <Logo />
+          </div>
         </div>
         
-        {/* Column 2: The rest */}
-        <div className="w-1/2 px-1.5">
-           {renderTable(categories[1])} {/* Insumos */}
-           {renderTable(categories[2])} {/* Ingredientes */}
-           {renderTable(categories[3])} {/* Massas */}
-           
-           <div className="mt-3 border border-black p-2 bg-gray-50 text-[10.5px]">
-             <div className="grid grid-cols-1 gap-2">
-               <div>
-                 <label className="block font-bold mb-0.5 uppercase">Responsável:</label>
-                 <input type="text" className="w-full border-b border-black bg-transparent outline-none h-4" />
-               </div>
-               <div className="flex gap-2">
-                  <div className="flex-1">
-                    <label className="block font-bold mb-0.5 uppercase">Data atual:</label>
-                    <input type="text" className="w-full border-b border-black bg-transparent outline-none h-4" placeholder="__/__/__" />
-                  </div>
-                  <div className="flex-1">
-                    <label className="block font-bold mb-0.5 uppercase">Data anterior:</label>
-                    <input type="text" className="w-full border-b border-black bg-transparent outline-none h-4" placeholder="__/__/__" />
-                  </div>
+        <div className="flex flex-wrap -mx-1.5 items-start">
+          {/* Column 1: Bebidas (Long list) */}
+          <div className="w-1/2 px-1.5">
+             {renderTable(categories[0])} {/* Bebidas */}
+          </div>
+          
+          {/* Column 2: The rest */}
+          <div className="w-1/2 px-1.5">
+             {renderTable(categories[1])} {/* Insumos */}
+             {renderTable(categories[2])} {/* Ingredientes */}
+             {renderTable(categories[3])} {/* Massas */}
+             
+             <div className="mt-3 border border-black p-2 bg-gray-50 text-[10px]">
+               <div className="grid grid-cols-1 gap-2">
+                 <div>
+                   <label className="block font-bold mb-0.5 uppercase">Responsável:</label>
+                   <input type="text" className="w-full border-b border-black bg-transparent outline-none h-4" />
+                 </div>
+                 <div className="flex gap-2">
+                    <div className="flex-1">
+                      <label className="block font-bold mb-0.5 uppercase">Data atual:</label>
+                      <input type="text" className="w-full border-b border-black bg-transparent outline-none h-4" placeholder="__/__/__" />
+                    </div>
+                    <div className="flex-1">
+                      <label className="block font-bold mb-0.5 uppercase">Data anterior:</label>
+                      <input type="text" className="w-full border-b border-black bg-transparent outline-none h-4" placeholder="__/__/__" />
+                    </div>
+                 </div>
                </div>
              </div>
-           </div>
+          </div>
         </div>
       </div>
     </div>
