@@ -90,7 +90,7 @@ export const DailyStock: React.FC = () => {
 
   return (
     <div className="w-full overflow-x-auto">
-      <div className="bg-white p-2 md:p-4 min-w-[297mm] max-w-[297mm] mx-auto min-h-[210mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 landscape:w-full print:w-full print:max-w-none flex flex-col h-full justify-between">
+      <div className="bg-white p-2 md:p-4 min-w-[297mm] max-w-[297mm] mx-auto min-h-[210mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 landscape:w-full print:w-full print:max-w-none print:min-w-0 flex flex-col h-full justify-between">
         <style>{`
           @media print {
              @page { size: A4 landscape; margin: 3mm; }
@@ -129,12 +129,12 @@ export const DailyStock: React.FC = () => {
                     "Frango Desfiado", "Strogonoff de Carne", "Strogonoff de Frango"
                   ].map((item, i) => (
                     <tr key={i} className="h-[17px]">
-                      <td className="border border-gray-600 px-1 font-medium">
+                      <td className="border border-gray-600 px-0.5 font-medium">
                         <input type="text" defaultValue={item} className="w-full h-full bg-transparent outline-none text-gray-900" />
                       </td>
                        {Array.from({length: 4}).map((_, j) => (
                           <React.Fragment key={j}>
-                            <td className="border border-gray-600 px-1 bg-white">
+                            <td className="border border-gray-600 px-0.5 bg-white">
                               <div className="flex justify-between items-center h-full">
                                  <input type="text" className="w-full bg-transparent outline-none text-right" />
                               </div>
@@ -144,7 +144,7 @@ export const DailyStock: React.FC = () => {
                             </td>
                           </React.Fragment>
                        ))}
-                      <td className="border border-gray-600 px-1 text-center font-bold bg-white">
+                      <td className="border border-gray-600 px-0.5 text-center font-bold bg-white">
                           <div className="flex justify-between items-center h-full">
                               <input type="text" className="w-full bg-transparent outline-none text-right" />
                           </div>

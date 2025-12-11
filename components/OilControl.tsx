@@ -4,7 +4,7 @@ import { Logo } from './Logo';
 export const OilControl: React.FC = () => {
   return (
     <div className="w-full overflow-x-auto">
-      <div className="bg-white p-2 md:p-4 min-w-[297mm] max-w-[297mm] mx-auto min-h-[210mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 landscape:w-full print:w-full print:max-w-none flex flex-col h-full">
+      <div className="bg-white p-2 md:p-4 min-w-[297mm] max-w-[297mm] mx-auto min-h-[210mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 landscape:w-full print:w-full print:max-w-none print:min-w-0 flex flex-col h-full">
          <style>{`
           @media print {
              @page { size: A4 landscape; margin: 5mm; }

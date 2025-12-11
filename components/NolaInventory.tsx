@@ -129,7 +129,7 @@ export const NolaInventory: React.FC = () => {
 
   return (
     <div className="w-full overflow-x-auto">
-      <div className="bg-white p-2 md:p-4 min-w-[210mm] max-w-[210mm] mx-auto min-h-[297mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 text-[10px] print:w-full print:max-w-none overflow-hidden">
+      <div className="bg-white p-2 md:p-4 min-w-[210mm] max-w-[210mm] mx-auto min-h-[297mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 text-[10px] print:w-full print:max-w-none print:min-w-0 overflow-hidden">
         <style>{`
           @media print {
              @page { size: A4 portrait; margin: 3mm; }

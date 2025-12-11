@@ -6,7 +6,7 @@ export const WasteControl: React.FC = () => {
 
   return (
     <div className="w-full overflow-x-auto">
-      <div className="bg-white p-2 md:p-8 min-w-[297mm] max-w-[297mm] mx-auto min-h-[210mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 print:w-full">
+      <div className="bg-white p-2 md:p-8 min-w-[297mm] max-w-[297mm] mx-auto min-h-[210mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 print:w-full print:min-w-0">
          <style>{`
           @media print {
              @page { size: A4 landscape; margin: 5mm; }
