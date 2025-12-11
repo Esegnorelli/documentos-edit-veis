@@ -72,6 +72,29 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #b91c1c; 
       }
+
+      /* UX Improvements */
+      /* Highlight focused input to make filling easier */
+      input:focus, textarea:focus {
+        background-color: #fef9c3 !important; /* yellow-100 */
+        transition: background-color 0.1s;
+        border-radius: 2px;
+      }
+      
+      /* Highlight table row on hover to guide eyes */
+      tbody tr:hover td {
+        background-color: rgba(0, 0, 0, 0.03);
+      }
+
+      /* Disable these UX effects on print */
+      @media print {
+        input:focus, textarea:focus {
+          background-color: transparent !important;
+        }
+        tbody tr:hover td {
+          background-color: transparent;
+        }
+      }
     </style>
 <script type="importmap">
 {
