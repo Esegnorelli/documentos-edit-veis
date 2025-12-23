@@ -138,7 +138,7 @@ export const DailyStock: React.FC = () => {
                    <strong className="block mb-1 uppercase text-gray-800 text-[10px] border-b border-gray-200 pb-0.5">Observações Gerais:</strong>
                    <textarea 
                     className="w-full flex-grow resize-none bg-transparent outline-none text-xs leading-tight" 
-                    placeholder="Anote aqui desvios, necessidades de compra ou observações de produção..."
+                    placeholder="Anote aqui desperdícios, necessidades de compra ou observações de produção..."
                    ></textarea>
                  </div>
                  
