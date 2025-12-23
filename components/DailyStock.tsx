@@ -76,11 +76,11 @@ export const DailyStock: React.FC = () => {
                     <th className="border border-gray-600 p-1 w-44 text-left uppercase">Descrição</th>
                     {Array.from({length: 4}).map((_, i) => (
                       <React.Fragment key={i}>
-                        <th className="border border-gray-600 p-1 w-14">QTD. (KG)</th>
-                        <th className="border border-gray-600 p-1 w-18">VAL.</th>
+                        <th className="border border-gray-600 p-1 w-16 text-center">QTD (KG)</th>
+                        <th className="border border-gray-600 p-1 w-16 text-center">VAL.</th>
                       </React.Fragment>
                     ))}
-                    <th className="border border-gray-600 p-1 w-16">Total (KG)</th>
+                    <th className="border border-gray-600 p-1 w-16 text-center">Total (KG)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -89,7 +89,7 @@ export const DailyStock: React.FC = () => {
                     "Frango Desfiado", "Strogonoff de Carne", "Strogonoff de Frango"
                   ].map((item, i) => (
                     <tr key={i} className="h-[25px]">
-                      <td className="border border-gray-600 px-2 font-medium bg-gray-50">
+                      <td className="border border-gray-600 px-2 font-medium bg-gray-50 text-[9px]">
                         <input type="text" defaultValue={item} className="w-full h-full bg-transparent outline-none text-gray-900" />
                       </td>
                        {Array.from({length: 4}).map((_, j) => (
@@ -120,7 +120,8 @@ export const DailyStock: React.FC = () => {
                    "Banana", 
                    "Brócolis", 
                    "Cenoura", 
-                   "Tempero Verde"
+                   "Tempero Verde",
+                   { name: "Ovo", unit: "un" }
                  ], "kg")}
                  
                  {renderSimpleTable("Ingredientes (Crús)", [
@@ -153,7 +154,7 @@ export const DailyStock: React.FC = () => {
             </div>
         </div>
         
-        {/* Rodapé Didático - Substitui o anterior */}
+        {/* Rodapé Didático */}
         <div className="mt-4 border-t-2 border-red-600 pt-3 grid grid-cols-12 gap-4">
           <div className="col-span-8 border-r border-gray-300 pr-4">
             <h4 className="text-[11px] font-bold text-red-700 uppercase mb-1">ATENÇÃO – OBJETIVOS DO CONTROLE</h4>
