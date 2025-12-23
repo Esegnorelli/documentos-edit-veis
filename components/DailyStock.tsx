@@ -125,12 +125,11 @@ export const DailyStock: React.FC = () => {
                 {renderSimpleTable("Hortifrúti, Embutidos e Ovos", [
                    "Banana", 
                    "Brócolis", 
-                   "Cenoura", 
                    "Tempero Verde",
-                   { name: "Ovo", unit: "un" },
+                   "Ovo",
                    { name: "Calabresa", unit: "kg" },
                    { name: "Bacon (Picado)", unit: "kg" }
-                 ], "kg")}
+                 ], "un")}
               </div>
 
               {/* Direita */}
