@@ -5,7 +5,7 @@ type StockItem = string | { name: string; unit: string };
 
 export const DailyStock: React.FC = () => {
   const renderSimpleTable = (title: string, items: StockItem[], defaultUnit = "un") => (
-    <div className="mb-3 print:break-inside-avoid">
+    <div className="mb-2 print:break-inside-avoid">
       <table className="w-full border-collapse border border-gray-600 text-[10px] leading-tight">
         <thead>
           <tr className="bg-gray-100">
@@ -19,7 +19,7 @@ export const DailyStock: React.FC = () => {
             const itemUnit = typeof item === 'string' ? defaultUnit : item.unit;
             
             return (
-              <tr key={i} className="h-[24px]">
+              <tr key={i} className="h-[22px] print:h-[20px]">
                 <td className="border border-gray-600 px-2">
                    <input 
                     type="text" 
@@ -30,7 +30,7 @@ export const DailyStock: React.FC = () => {
                 <td className="border border-gray-600 px-2 bg-white">
                     <div className="flex justify-between items-center h-full">
                        <input type="text" className="w-full h-full bg-transparent outline-none text-right" />
-                       <span className="text-[9px] text-gray-500 ml-1 uppercase">{itemUnit}</span>
+                       <span className="text-[9px] text-gray-400 ml-1 uppercase">{itemUnit}</span>
                     </div>
                 </td>
               </tr>
@@ -43,32 +43,38 @@ export const DailyStock: React.FC = () => {
 
   return (
     <div className="w-full overflow-x-auto">
-      <div className="bg-white p-4 md:p-8 min-w-[297mm] max-w-[297mm] mx-auto min-h-[210mm] print:min-h-0 shadow-lg print:shadow-none print:p-0 landscape:w-full print:w-full print:max-w-none print:min-w-0 flex flex-col h-full">
+      <div className="bg-white p-4 md:p-6 min-w-[297mm] max-w-[297mm] mx-auto min-h-[210mm] print:min-h-0 print:h-[200mm] shadow-lg print:shadow-none print:p-0 landscape:w-full print:w-full print:max-w-none print:min-w-0 flex flex-col h-full overflow-hidden">
         <style>{`
           @media print {
-             @page { size: A4 landscape; margin: 4mm; }
+             @page { 
+               size: A4 landscape; 
+               margin: 5mm !important; 
+             }
+             body { -webkit-print-color-adjust: exact; }
+             /* Ensure no extra pages are created */
+             html, body { height: 100%; overflow: hidden; }
           }
         `}</style>
         
         {/* Header */}
-        <div className="flex justify-between items-center mb-3 border-b-2 border-red-600 pb-2">
+        <div className="flex justify-between items-center mb-2 border-b-2 border-red-600 pb-1">
           <div className="flex flex-col">
-            <h1 className="text-2xl font-bold text-gray-900 uppercase tracking-tight">
+            <h1 className="text-xl font-bold text-gray-900 uppercase tracking-tight">
               Controle do Estoque Diário
             </h1>
-            <span className="text-[10px] text-gray-500 font-medium italic">Visão Real e Organização de Produção</span>
+            <span className="text-[9px] text-gray-500 font-medium italic">Visão Real e Organização de Produção</span>
           </div>
-          <div className="transform scale-90 origin-right">
+          <div className="transform scale-75 origin-right">
              <Logo />
           </div>
         </div>
 
-        <div className="flex-grow flex flex-col gap-3">
+        <div className="flex-grow flex flex-col gap-2">
             {/* Tabela de Cozidos - Full Width */}
             <div className="flex-shrink-0">
-              <div className="text-[11px] font-bold mb-1 uppercase text-red-700 flex items-center">
-                <span className="w-2 h-2 bg-red-600 rounded-full mr-2"></span>
-                Cozidos / Prontos
+              <div className="text-[10px] font-bold mb-1 uppercase text-red-700 flex items-center">
+                <span className="w-1.5 h-1.5 bg-red-600 rounded-full mr-1.5"></span>
+                Cozidos / Prontos (Estoque Diário)
               </div>
               <table className="w-full border-collapse border border-gray-600 text-[10px]">
                 <thead>
@@ -85,10 +91,10 @@ export const DailyStock: React.FC = () => {
                 </thead>
                 <tbody>
                   {[
-                    "Bacon", "Carne de Panela", "Carne Moída", "Filé", 
+                    "Bacon Frito", "Carne de Panela", "Carne Moída", "Filé", 
                     "Frango Desfiado", "Strogonoff de Carne", "Strogonoff de Frango"
                   ].map((item, i) => (
-                    <tr key={i} className="h-[25px]">
+                    <tr key={i} className="h-[23px] print:h-[21px]">
                       <td className="border border-gray-600 px-2 font-medium bg-gray-50 text-[9px]">
                         <input type="text" defaultValue={item} className="w-full h-full bg-transparent outline-none text-gray-900" />
                       </td>
@@ -111,43 +117,40 @@ export const DailyStock: React.FC = () => {
               </table>
             </div>
 
-            {/* Coluna Esquerda: Hortifrúti e Ingredientes | Coluna Direita: Observações e Assinaturas */}
-            <div className="flex gap-6 items-start">
+            {/* Coluna Esquerda: Hortifrúti, Embutidos e Ovos | Coluna Direita: Observações e Assinaturas */}
+            <div className="flex gap-4 items-stretch flex-grow">
               
               {/* Esquerda */}
-              <div className="w-5/12">
-                {renderSimpleTable("Hortifrúti", [
+              <div className="w-5/12 flex flex-col gap-1">
+                {renderSimpleTable("Hortifrúti, Embutidos e Ovos", [
                    "Banana", 
                    "Brócolis", 
                    "Cenoura", 
                    "Tempero Verde",
-                   { name: "Ovo", unit: "un" }
-                 ], "kg")}
-                 
-                 {renderSimpleTable("Ingredientes (Crús)", [
-                   "Bacon Cru", "Calabresa", "Carne Moída", "Gado Cubos", "Gado Picado",
-                   "Peito de Frango", "Sassami"
+                   { name: "Ovo", unit: "un" },
+                   { name: "Calabresa", unit: "kg" },
+                   { name: "Bacon (Picado)", unit: "kg" }
                  ], "kg")}
               </div>
 
               {/* Direita */}
-              <div className="w-7/12 flex flex-col gap-3">
-                 <div className="border-2 border-gray-600 p-3 bg-white flex flex-col h-full min-h-[160px]">
-                   <strong className="block mb-2 uppercase text-gray-800 text-xs border-b border-gray-200 pb-1">Observações Gerais:</strong>
+              <div className="w-7/12 flex flex-col gap-2">
+                 <div className="border-2 border-gray-600 p-2 bg-white flex flex-col flex-grow">
+                   <strong className="block mb-1 uppercase text-gray-800 text-[10px] border-b border-gray-200 pb-0.5">Observações Gerais:</strong>
                    <textarea 
-                    className="w-full flex-grow resize-none bg-transparent outline-none text-sm leading-relaxed" 
-                    placeholder="Anote aqui desvios, necessidades urgentes de compra ou observações de produção..."
+                    className="w-full flex-grow resize-none bg-transparent outline-none text-xs leading-tight" 
+                    placeholder="Anote aqui desvios, necessidades de compra ou observações de produção..."
                    ></textarea>
                  </div>
                  
-                 <div className="border border-gray-600 p-4 bg-gray-50 grid grid-cols-2 gap-6">
+                 <div className="border border-gray-600 p-3 bg-gray-50 grid grid-cols-2 gap-4 flex-shrink-0">
                     <div>
-                      <label className="text-[10px] font-bold block uppercase text-gray-600 mb-1">Nome do Responsável:</label>
-                      <input type="text" className="border-b-2 border-gray-400 w-full bg-transparent outline-none text-base py-1 font-medium" />
+                      <label className="text-[9px] font-bold block uppercase text-gray-600 mb-0.5">Nome do Responsável:</label>
+                      <input type="text" className="border-b border-gray-400 w-full bg-transparent outline-none text-sm py-0.5 font-medium" />
                     </div>
                     <div>
-                      <label className="text-[10px] font-bold block uppercase text-gray-600 mb-1">Data de Preenchimento:</label>
-                      <input type="text" className="border-b-2 border-gray-400 w-full bg-transparent outline-none text-base py-1 text-center font-medium" placeholder="__/__/____" />
+                      <label className="text-[9px] font-bold block uppercase text-gray-600 mb-0.5">Data de Preenchimento:</label>
+                      <input type="text" className="border-b border-gray-400 w-full bg-transparent outline-none text-sm py-0.5 text-center font-medium" placeholder="__/__/____" />
                     </div>
                  </div>
               </div>
@@ -155,20 +158,20 @@ export const DailyStock: React.FC = () => {
         </div>
         
         {/* Rodapé Didático */}
-        <div className="mt-4 border-t-2 border-red-600 pt-3 grid grid-cols-12 gap-4">
-          <div className="col-span-8 border-r border-gray-300 pr-4">
-            <h4 className="text-[11px] font-bold text-red-700 uppercase mb-1">ATENÇÃO – OBJETIVOS DO CONTROLE</h4>
-            <p className="text-[10px] text-gray-700 leading-tight">
-              Preenchimento <strong>obrigatório</strong> ao final do último turno. Garante a visão real do estoque (crus e prontos), 
-              auxiliando no planejamento de compras, organização da produção, controle de validade/giro e redução de desperdícios.
+        <div className="mt-3 border-t-2 border-red-600 pt-2 grid grid-cols-12 gap-3 flex-shrink-0">
+          <div className="col-span-8 border-r border-gray-300 pr-3">
+            <h4 className="text-[10px] font-bold text-red-700 uppercase mb-0.5">ATENÇÃO – OBJETIVOS DO CONTROLE</h4>
+            <p className="text-[9px] text-gray-700 leading-tight">
+              Preenchimento <strong>obrigatório</strong> ao final do último turno. Garante a visão real do estoque, 
+              auxiliando no planejamento de compras, organização da produção e redução de desperdícios.
             </p>
           </div>
           <div className="col-span-4">
-            <h4 className="text-[11px] font-bold text-gray-900 uppercase mb-1 flex items-center">
+            <h4 className="text-[10px] font-bold text-gray-900 uppercase mb-0.5 flex items-center">
               ⚠️ ATENÇÃO ÀS VALIDADES
             </h4>
-            <p className="text-[10px] text-gray-700 leading-tight italic">
-              Mais de 3 validades para um item indica produção excessiva ou falha no planejamento. Produza conforme a demanda.
+            <p className="text-[9px] text-gray-700 leading-tight italic">
+              Mais de 3 validades indica produção excessiva. Produza conforme a demanda.
             </p>
           </div>
         </div>
